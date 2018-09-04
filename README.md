@@ -8,9 +8,11 @@ As web developers you’re going to be living in the context of the web. With th
 In this project you will be getting your first real interactions with ReactJS, asynchronous javascript, and managing the state of your application.
 
 Required Technology
-ReactJS
-fetch for api requests
-weather underground API
+
+- ReactJS
+- fetch for api requests
+- weather underground API
+
 Use create-react-app for your project. We’ll learn how to configure the testing environment in our testing lesson later this week.
 
 ## Requirements
