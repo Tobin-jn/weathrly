@@ -13,42 +13,42 @@ class App extends Component {
     super()
 
     this.state = {
-      displayingWelcome: true,
-      displayingCurrentForecast: false,
+      displayingWelcome: false,
+      displayingCurrentForecast: true,
       displayingHourlyForecast: false,
       displayingDailyForecast: false
     }
   }
+
+  changeDisplay = () => {
+    console.log('test')
+    this.setState({displayingWelcome: true})
+    
+  }
+
   render() {
     let display;
-    let header;
-    let footer;
 
     if (this.state.displayingWelcome){
       display = <Welcome />
     }
     if (this.state.displayingCurrentForecast){
       display = <CurrentForecast />
-      header = <Header /> 
-      footer = <Footer />
     }
     if (this.state.displayingHourlyForecast){
       display = <HourlyForecast />
-      header = <Header /> 
-      footer = <Footer />
     }    
     if (this.state.displayingDailyForecast){
       display = <DailyForecast />
-      header = <Header /> 
-      footer = <Footer />
     }
+
 
 
     return (
       <div className="App">
-        { header }
+        {!this.state.displayingWelcome && <Header changeDisplay={this.changeDisplay}/>}
         { display }
-        { footer }
+        {!this.state.displayingWelcome && <Footer />}
       </div>
 
     );

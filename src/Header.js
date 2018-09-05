@@ -14,7 +14,9 @@ export default class Header extends Component {
       <header>
         <img />
         <h1>Weathrly</h1>
-        <button>Today</button>
+        <button
+          onClick={this.props.changeDisplay}
+        >Today</button>
         <button>7 Hour Forecast</button>
         <button>10 Day Forecast</button>
         <Search />
