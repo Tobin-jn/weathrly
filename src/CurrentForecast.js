@@ -3,12 +3,11 @@ import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 
-export default function HourlyForecast(props) {
+export default function CurrentForecast(props) {
   return(
       <div>
-        <Header />
-        <h1>HourlyForecast</h1>
-        <Footer />
+        <h1>CurrentForecast</h1>
+
       </div>
   );
 }
