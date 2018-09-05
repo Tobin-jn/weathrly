@@ -1,13 +1,9 @@
 import React from 'react';
 
-export default class Card {
-  constructor () {
-
-  }
+export default function Card(props) {
+  return(
+      <div>
+        <h1>Card</h1>
+      </div>
+  );
 }
-
-  render() {
-    return(
-      
-      );
-  }

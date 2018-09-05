@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class Header {
+import Search from './Search';
+
+export default class Header extends Component {
   constructor () {
+    super();
 
   }
-}
+
 
   render() {
     return(
-      
-      );
+      <header>
+        <img />
+        <h1>Weathrly</h1>
+        <button>Today</button>
+        <button>7 Hour Forecast</button>
+        <button>10 Day Forecast</button>
+        <Search />
+      </header>
+    );
   }
+}

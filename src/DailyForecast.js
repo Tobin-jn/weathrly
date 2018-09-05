@@ -1,13 +1,9 @@
 import React from 'react';
 
-export default class DailyForecast {
-  constructor () {
-
-  }
+export default function DailyForecast(props) {
+  return(
+      <div>
+        <h1>DailyForecast</h1>
+      </div>
+  );
 }
-
-  render() {
-    return(
-      
-      );
-  }
