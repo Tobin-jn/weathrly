@@ -20,10 +20,28 @@ class App extends Component {
     }
   }
 
-  changeDisplay = () => {
-    console.log('test')
-    this.setState({displayingWelcome: true})
-    
+  changeToCurrent = () => {
+    this.setState({
+      displayingCurrentForecast: true,
+      displayingHourlyForecast: false,
+      displayingDailyForecast: false
+    })
+  }
+
+  changeToHourly = () => {
+    this.setState({
+      displayingCurrentForecast: false,
+      displayingHourlyForecast: true,
+      displayingDailyForecast: false
+    })
+  }
+
+  changeToDaily = () => {
+    this.setState({
+      displayingCurrentForecast: false,
+      displayingHourlyForecast: false,
+      displayingDailyForecast: true
+    })
   }
 
   render() {
@@ -46,7 +64,10 @@ class App extends Component {
 
     return (
       <div className="App">
-        {!this.state.displayingWelcome && <Header changeDisplay={this.changeDisplay}/>}
+        {!this.state.displayingWelcome && <Header 
+          changeToCurrent={this.changeToCurrent} 
+          changeToHourly={this.changeToHourly} 
+          changeToDaily={this.changeToDaily}/>}
         { display }
         {!this.state.displayingWelcome && <Footer />}
       </div>
