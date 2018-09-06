@@ -22,7 +22,7 @@ export default class Header extends Component {
         <button
           onClick={this.props.changeToDaily}
         >10 Day Forecast</button>
-        <Search />
+        <Search changeSelectedLocation={this.props.changeSelectedLocation}/>
       </header>
     );
   }
