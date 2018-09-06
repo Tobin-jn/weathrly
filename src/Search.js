@@ -15,20 +15,19 @@ export default class Search extends Component {
         <input
           type = 'text'
           value = {this.state.location}
-          // onChange = {(event) => {
-          //   this.setState({
-          //     location: (event.target.value)
-          //   })
-          // }}
+          onChange = {(event) => {
+            this.setState({
+              location: (event.target.value)
+            })
+          }}
         />
       <button
-        // onClick={(event) => {
-        //   event.preventDefault();
-        //   this.props.resetLocation(this.state.location)
-        // }}
+        onClick={(event) => {
+          event.preventDefault();
+          this.props.changeSelectedLocation(this.state.location)
+        }}
         >Get Weather</button>
       </form>
-
     );
   }
 }

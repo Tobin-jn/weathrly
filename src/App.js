@@ -14,10 +14,17 @@ class App extends Component {
 
     this.state = {
       displayingWelcome: false,
-      displayingCurrentForecast: true,
-      displayingHourlyForecast: false,
-      displayingDailyForecast: false
+      displayingCurrentForecast: false,
+      displayingHourlyForecast: true,
+      displayingDailyForecast: false,
+      selectedLocation: null
     }
+  }
+
+  changeSelectedLocation = (location) => {
+    this.setState({
+      selectedLocation: location
+    })
   }
 
   changeToCurrent = () => {
@@ -60,11 +67,11 @@ class App extends Component {
       display = <DailyForecast />
     }
 
-
-
     return (
       <div className="App">
-        {!this.state.displayingWelcome && <Header 
+        {!this.state.displayingWelcome && 
+          <Header 
+          changeSelectedLocation={this.changeSelectedLocation}
           changeToCurrent={this.changeToCurrent} 
           changeToHourly={this.changeToHourly} 
           changeToDaily={this.changeToDaily}/>}

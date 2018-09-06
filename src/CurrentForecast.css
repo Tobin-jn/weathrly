@@ -1,0 +1,11 @@
+.current-title, 
+.current-date,
+.current-condition-icon,
+.current-temp,
+.current-high-temp,
+.current-low-temp,
+.current-city,
+.current-condition-summary {
+  text-align: center;
+}
+
