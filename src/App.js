@@ -14,8 +14,8 @@ class App extends Component {
 
     this.state = {
       displayingWelcome: false,
-      displayingCurrentForecast: true,
-      displayingHourlyForecast: false,
+      displayingCurrentForecast: false,
+      displayingHourlyForecast: true,
       displayingDailyForecast: false
     }
   }
