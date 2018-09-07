@@ -17,5 +17,6 @@ export default function CurrentForecast(props) {
           Low: {Object.values(data)[2].simpleforecast.forecastday[2].low.fahrenheit}&deg;</p>
         <p className='current-city'>{props.selectedLocation}</p>
         <p className='current-condition-summary'>{summary}</p>
-      </div>  );
+      </div>  
+    );
 }

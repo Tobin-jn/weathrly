@@ -9,6 +9,43 @@ import DailyForecast from './DailyForecast'
 import './App.css';
 import { data } from './api';
 
+const hourlyWeatherData = [
+  {
+    temp: Object.values(data)[3][0].temp.english,
+    hour: Object.values(data)[3][0].FCTTIME.hour
+  },
+  {
+    // icon:
+    temp: Object.values(data)[3][1].temp.english,
+    hour: Object.values(data)[3][1].FCTTIME.hour
+  },  
+  {
+    // icon:
+    temp: Object.values(data)[3][2].temp.english,
+    hour: Object.values(data)[3][2].FCTTIME.hour
+  },  
+  {
+    // icon:
+    temp: Object.values(data)[3][3].temp.english,
+    hour: Object.values(data)[3][3].FCTTIME.hour
+  },  
+  {
+    // icon:
+    temp: Object.values(data)[3][4].temp.english,
+    hour: Object.values(data)[3][4].FCTTIME.hour
+  },  
+  {
+    // icon:
+    temp: Object.values(data)[3][5].temp.english,
+    hour: Object.values(data)[3][5].FCTTIME.hour
+  },  
+  {
+    // icon:
+    temp: Object.values(data)[3][6].temp.english,
+    hour: Object.values(data)[3][6].FCTTIME.hour
+  }
+]
+
 class App extends Component {
   constructor () {
     super()
@@ -19,7 +56,6 @@ class App extends Component {
       displayingHourlyForecast: true,
       displayingDailyForecast: false,
       selectedLocation: null,
-      // weatherData = data
     }
   }
 
@@ -63,7 +99,7 @@ class App extends Component {
       display = <CurrentForecast selectedLocation={this.state.selectedLocation}/>
     }
     if (this.state.displayingHourlyForecast){
-      display = <HourlyForecast />
+      display = <HourlyForecast hourlyWeatherData={hourlyWeatherData}/>
     }    
     if (this.state.displayingDailyForecast){
       display = <DailyForecast />
