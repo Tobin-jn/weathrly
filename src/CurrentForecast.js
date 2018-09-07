@@ -12,7 +12,7 @@ export default function CurrentForecast(props) {
         
         <p className='current-temp'>{Object.values(data)[1].temp_f}&deg;</p>
         <p className='current-high-temp'>
-          High: {Object.values(data)[2].simpleforecast.forecastday[2].high.fahrenheit}&deg;</p>
+          High: {Object.values(data)[2].simpleforecast.forecastday[0].high.fahrenheit}&deg;</p>
         <p className='current-low-temp'>
           Low: {Object.values(data)[2].simpleforecast.forecastday[2].low.fahrenheit}&deg;</p>
         <p className='current-city'>{props.selectedLocation}</p>

@@ -46,6 +46,14 @@ const hourlyWeatherData = [
   }
 ]
 
+const dailyWeatherData = [
+  {
+    temp: Object.values(data)[2].simpleforecast.forecastday[0].high.fahrenheit,
+    day: Object.values(data)[2].simpleforecast.forecastday[0].date.weekday,
+    condition: Object.values(data)[2].simpleforecast.forecastday[0].conditions
+  },
+]
+
 class App extends Component {
   constructor () {
     super()
@@ -102,7 +110,7 @@ class App extends Component {
       display = <HourlyForecast hourlyWeatherData={hourlyWeatherData}/>
     }    
     if (this.state.displayingDailyForecast){
-      display = <DailyForecast />
+      display = <DailyForecast dailyWeatherData={dailyWeatherData}/>
     }
 
     return (
