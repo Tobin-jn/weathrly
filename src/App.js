@@ -7,6 +7,7 @@ import CurrentForecast from './CurrentForecast'
 import HourlyForecast from './HourlyForecast'
 import DailyForecast from './DailyForecast'
 import './App.css';
+import { data } from './api';
 
 class App extends Component {
   constructor () {
@@ -17,14 +18,15 @@ class App extends Component {
       displayingCurrentForecast: false,
       displayingHourlyForecast: true,
       displayingDailyForecast: false,
-      selectedLocation: null
+      selectedLocation: null,
+      // weatherData = data
     }
   }
 
   changeSelectedLocation = (location) => {
     this.setState({
       selectedLocation: location
-    })
+    });
   }
 
   changeToCurrent = () => {
@@ -32,7 +34,7 @@ class App extends Component {
       displayingCurrentForecast: true,
       displayingHourlyForecast: false,
       displayingDailyForecast: false
-    })
+    });
   }
 
   changeToHourly = () => {
@@ -40,7 +42,7 @@ class App extends Component {
       displayingCurrentForecast: false,
       displayingHourlyForecast: true,
       displayingDailyForecast: false
-    })
+    });
   }
 
   changeToDaily = () => {
@@ -48,7 +50,7 @@ class App extends Component {
       displayingCurrentForecast: false,
       displayingHourlyForecast: false,
       displayingDailyForecast: true
-    })
+    });
   }
 
   render() {
@@ -58,7 +60,7 @@ class App extends Component {
       display = <Welcome />
     }
     if (this.state.displayingCurrentForecast){
-      display = <CurrentForecast />
+      display = <CurrentForecast selectedLocation={this.state.selectedLocation}/>
     }
     if (this.state.displayingHourlyForecast){
       display = <HourlyForecast />
@@ -78,7 +80,6 @@ class App extends Component {
         { display }
         {!this.state.displayingWelcome && <Footer />}
       </div>
-
     );
   }
 }
