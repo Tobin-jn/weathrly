@@ -13,6 +13,7 @@ export default class Header extends Component {
         <Search 
           changeSelectedLocation={this.props.changeSelectedLocation}
           changeToHourly={this.props.changeToHourly}
+          selectedLocation={this.props.selectedLocation}
         />
       </header>
     );

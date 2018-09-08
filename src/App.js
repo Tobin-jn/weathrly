@@ -46,7 +46,7 @@ class App extends Component {
       displayingWelcome: true,
       displayingHourlyForecast: false,
       displayingDailyForecast: false,
-      selectedLocation: null
+      selectedLocation: ''
     }
   }
 
@@ -102,6 +102,7 @@ class App extends Component {
             <Header 
               changeSelectedLocation={this.changeSelectedLocation}
               changeToHourly={this.changeToHourly}
+              selectedLocation={this.state.selectedLocation}
             />
             <CurrentForecast 
               selectedLocation={this.state.selectedLocation} />

@@ -19,6 +19,7 @@ export default class Search extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div className={this.props.hourly ? 'thisthing' : ''}>
         <p className='search-instructions'>Enter your city or zipcode to get the weather.</p>
