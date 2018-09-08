@@ -19,13 +19,12 @@ export default class Search extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
-      <div className={this.props.hourly ? 'thisthing' : ''}>
-        <p className='search-instructions'>Enter your city or zipcode to get the weather.</p>
-        <form className='search-form-container' onSubmit={this.handleSubmit}>
-
+      <div className={this.props.selectedLocation ? 'header-search' : 'welcome-search'}>
+        <p>Enter your city or zipcode to get the weather.</p>
+        <form onSubmit={this.handleSubmit}>
           <input
-            className = 'search-input'
             type = 'text'
             value = {this.state.location}
             onChange = {(event) => {
@@ -34,7 +33,7 @@ export default class Search extends Component {
               })
             }}
           />
-        <button className='search-button'>Get Weather</button>
+        <button>Get Weather</button>
         </form>
       </div>
     );

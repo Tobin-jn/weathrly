@@ -10,6 +10,7 @@ export default function Welcome(props) {
         <Search 
           changeSelectedLocation={props.changeSelectedLocation}
           changeToHourly={props.changeToHourly}
+          selectedLocation={props.selectedLocation}
         />
       </div>
   );
