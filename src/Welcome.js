@@ -6,7 +6,7 @@ import './Welcome.css';
 export default function Welcome(props) {
   return(
       <div className='container'>
-        <h1>Welcome</h1>
+        <h1 className='welcome-header'>Weathrly</h1>
         <Search />
       </div>
   );
