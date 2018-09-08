@@ -10,52 +10,41 @@ import DailyForecast from './DailyForecast'
 import './App.css';
 import { data } from './api';
 
-const hourlyWeatherData = [
-  {
-    temp: Object.values(data)[3][0].temp.english,
-    hour: Object.values(data)[3][0].FCTTIME.hour
-  },
-  {
-    temp: Object.values(data)[3][1].temp.english,
-    hour: Object.values(data)[3][1].FCTTIME.hour
-  },  
-  {
-    temp: Object.values(data)[3][2].temp.english,
-    hour: Object.values(data)[3][2].FCTTIME.hour
-  },  
-  {
-    temp: Object.values(data)[3][3].temp.english,
-    hour: Object.values(data)[3][3].FCTTIME.hour
-  },  
-  {
-    temp: Object.values(data)[3][4].temp.english,
-    hour: Object.values(data)[3][4].FCTTIME.hour
-  },  
-  {
-    temp: Object.values(data)[3][5].temp.english,
-    hour: Object.values(data)[3][5].FCTTIME.hour
-  },  
-  {
-    temp: Object.values(data)[3][6].temp.english,
-    hour: Object.values(data)[3][6].FCTTIME.hour
+//Hourly data
+const dataPathHourly = Object.values(data)[3];
+const hourCondition = dataPathHourly.map( hour => hour.condition );
+const hour = dataPathHourly.map( hour => hour.FCTTIME.hour );
+const hourlyTemp = dataPathHourly.map( hour => hour.temp.english );
+const hourlyWeatherData = hourlyTemp.map((element, index) => {
+  return { 
+    hour: hour[index], 
+    hourCondition: hourCondition[index], 
+    temp: element 
   }
-]
+}).splice(0, 7);
 
-const dailyWeatherData = [
-  {
-    temp: Object.values(data)[2].simpleforecast.forecastday[0].high.fahrenheit,
-    day: Object.values(data)[2].simpleforecast.forecastday[0].date.weekday,
-    condition: Object.values(data)[2].simpleforecast.forecastday[0].conditions
-  },
-]
+//Daily Data
+const dataPathDaily = Object.values(data)[2].simpleforecast.forecastday
+const weekday = dataPathDaily.map( entry => entry.date.weekday );
+const dailyCondition = dataPathDaily.map( entry => entry.conditions );
+const dailyHigh = dataPathDaily.map( entry => entry.high.fahrenheit );
+const dailyLow = dataPathDaily.map( entry => entry.low.fahrenheit );
+const dailyWeatherData = weekday.map((day, index) => {
+  return { 
+    day: day, 
+    dailyCondition: dailyCondition[index], 
+    high: dailyHigh[index], 
+    low: dailyLow[index]
+  }
+});
 
 class App extends Component {
   constructor () {
     super()
 
     this.state = {
-      displayingWelcome: true,
-      displayingHourlyForecast: false,
+      displayingWelcome: false,
+      displayingHourlyForecast: true,
       displayingDailyForecast: false,
       selectedLocation: null,
     }
@@ -87,11 +76,17 @@ class App extends Component {
     if (this.state.displayingWelcome) {
       display = <Welcome />
     }
-    if (this.state.displayingHourlyForecast) {
-      display = <HourlyForecast hourlyWeatherData={hourlyWeatherData} />
-    }    
-    if (this.state.displayingDailyForecast) {
-      display = <DailyForecast dailyWeatherData={dailyWeatherData} />
+
+    if (this.state.displayingHourlyForecast){
+      display = <HourlyForecast hourlyWeatherData={hourlyWeatherData}
+        displayingHourlyForecast = {this.state.displayingHourlyForecast}
+      />
+    } 
+
+    if (this.state.displayingDailyForecast){
+      display = <DailyForecast dailyWeatherData={dailyWeatherData}
+        displayingDailyForecast ={this.state.displayingDailyForecast}
+      />
     }
 
     return (
