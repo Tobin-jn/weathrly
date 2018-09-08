@@ -3,19 +3,27 @@ import React, { Component } from 'react';
 import './Search.css'
 
 export default class Search extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      location: null
+      location: ''
     }
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.props.changeSelectedLocation(this.state.location)
+    this.props.changeToHourly()
+
   }
 
   render() {
     return (
-      <div>
+      <div className={this.props.hourly ? 'thisthing' : ''}>
         <p className='search-instructions'>Enter your city or zipcode to get the weather.</p>
-        <form className='search-form-container'>
+        <form className='search-form-container' onSubmit={this.handleSubmit}>
+
           <input
             className = 'search-input'
             type = 'text'
@@ -26,12 +34,7 @@ export default class Search extends Component {
               })
             }}
           />
-        <button className='search-button'
-          onClick={(event) => {
-            event.preventDefault();
-            this.props.changeSelectedLocation(this.state.location)
-          }}
-          >Get Weather</button>
+        <button className='search-button'>Get Weather</button>
         </form>
       </div>
     );

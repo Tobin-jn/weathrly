@@ -7,7 +7,10 @@ export default function Welcome(props) {
   return(
       <div className='container'>
         <h1 className='welcome-header'>Weathrly</h1>
-        <Search />
+        <Search 
+          changeSelectedLocation={props.changeSelectedLocation}
+          changeToHourly={props.changeToHourly}
+        />
       </div>
   );
 }
