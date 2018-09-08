@@ -8,13 +8,17 @@ export default function HourlyForecast(props) {
         <h1 className='hourly-title'>7-Hour Forecast</h1>
         <p className='hourly-city'>City</p>
         <section className='hourly-card-container'>
-          {
-        props.hourlyWeatherData.map((hour, index) => {
-          return (
-            <Card hourlyWeatherData={props.hourlyWeatherData} hour={hour} key={index} />
-            )
-        })
-      }
+          { props.hourlyWeatherData.map((hour, index) => {
+            return (
+              <Card 
+                hourlyWeatherData = {props.hourlyWeatherData} 
+                hour={hour} 
+                key={index}
+                displayingHourlyForecast = {props.displayingHourlyForecast}
+                 />
+              )
+            })
+          }
         </section>
       </div>
   );
