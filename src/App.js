@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Welcome from './Welcome';
 import Header from './Header';
+import Navigation from './Navigation';
 import Footer from './Footer';
 import CurrentForecast from './CurrentForecast'
 import HourlyForecast from './HourlyForecast'
@@ -15,32 +16,26 @@ const hourlyWeatherData = [
     hour: Object.values(data)[3][0].FCTTIME.hour
   },
   {
-    // icon:
     temp: Object.values(data)[3][1].temp.english,
     hour: Object.values(data)[3][1].FCTTIME.hour
   },  
   {
-    // icon:
     temp: Object.values(data)[3][2].temp.english,
     hour: Object.values(data)[3][2].FCTTIME.hour
   },  
   {
-    // icon:
     temp: Object.values(data)[3][3].temp.english,
     hour: Object.values(data)[3][3].FCTTIME.hour
   },  
   {
-    // icon:
     temp: Object.values(data)[3][4].temp.english,
     hour: Object.values(data)[3][4].FCTTIME.hour
   },  
   {
-    // icon:
     temp: Object.values(data)[3][5].temp.english,
     hour: Object.values(data)[3][5].FCTTIME.hour
   },  
   {
-    // icon:
     temp: Object.values(data)[3][6].temp.english,
     hour: Object.values(data)[3][6].FCTTIME.hour
   }
@@ -60,7 +55,6 @@ class App extends Component {
 
     this.state = {
       displayingWelcome: false,
-      displayingCurrentForecast: false,
       displayingHourlyForecast: true,
       displayingDailyForecast: false,
       selectedLocation: null,
@@ -73,17 +67,8 @@ class App extends Component {
     });
   }
 
-  changeToCurrent = () => {
-    this.setState({
-      displayingCurrentForecast: true,
-      displayingHourlyForecast: false,
-      displayingDailyForecast: false
-    });
-  }
-
   changeToHourly = () => {
     this.setState({
-      displayingCurrentForecast: false,
       displayingHourlyForecast: true,
       displayingDailyForecast: false
     });
@@ -91,7 +76,6 @@ class App extends Component {
 
   changeToDaily = () => {
     this.setState({
-      displayingCurrentForecast: false,
       displayingHourlyForecast: false,
       displayingDailyForecast: true
     });
@@ -100,27 +84,30 @@ class App extends Component {
   render() {
     let display;
 
-    if (this.state.displayingWelcome){
+    if (this.state.displayingWelcome) {
       display = <Welcome />
     }
-    if (this.state.displayingCurrentForecast){
-      display = <CurrentForecast selectedLocation={this.state.selectedLocation}/>
-    }
-    if (this.state.displayingHourlyForecast){
-      display = <HourlyForecast hourlyWeatherData={hourlyWeatherData}/>
+    if (this.state.displayingHourlyForecast) {
+      display = <HourlyForecast hourlyWeatherData={hourlyWeatherData} />
     }    
-    if (this.state.displayingDailyForecast){
-      display = <DailyForecast dailyWeatherData={dailyWeatherData}/>
+    if (this.state.displayingDailyForecast) {
+      display = <DailyForecast dailyWeatherData={dailyWeatherData} />
     }
 
     return (
       <div className="App">
-        {!this.state.displayingWelcome && 
-          <Header 
-          changeSelectedLocation={this.changeSelectedLocation}
-          changeToCurrent={this.changeToCurrent} 
+        {
+          !this.state.displayingWelcome && 
+          <div>
+            <Header changeSelectedLocation={this.changeSelectedLocation}/>
+            <CurrentForecast 
+              selectedLocation={this.state.selectedLocation} />
+          </div>
+        }
+
+        <Navigation
           changeToHourly={this.changeToHourly} 
-          changeToDaily={this.changeToDaily}/>}
+          changeToDaily={this.changeToDaily}/>
         { display }
         {!this.state.displayingWelcome && <Footer />}
       </div>
