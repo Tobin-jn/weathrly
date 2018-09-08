@@ -43,10 +43,10 @@ class App extends Component {
     super()
 
     this.state = {
-      displayingWelcome: false,
-      displayingHourlyForecast: true,
+      displayingWelcome: true,
+      displayingHourlyForecast: false,
       displayingDailyForecast: false,
-      selectedLocation: null,
+      selectedLocation: null
     }
   }
 
@@ -58,6 +58,7 @@ class App extends Component {
 
   changeToHourly = () => {
     this.setState({
+      displayingWelcome: false,
       displayingHourlyForecast: true,
       displayingDailyForecast: false
     });
@@ -65,6 +66,7 @@ class App extends Component {
 
   changeToDaily = () => {
     this.setState({
+      displayingWelcome: false,
       displayingHourlyForecast: false,
       displayingDailyForecast: true
     });
@@ -74,7 +76,11 @@ class App extends Component {
     let display;
 
     if (this.state.displayingWelcome) {
-      display = <Welcome />
+      console.log('test')
+      display = <Welcome 
+        changeSelectedLocation={this.changeSelectedLocation}
+        changeToHourly={this.changeToHourly}
+        />
     }
 
     if (this.state.displayingHourlyForecast){
@@ -93,14 +99,17 @@ class App extends Component {
       <div className="App">
         {!this.state.displayingWelcome && 
           <div>
-            <Header changeSelectedLocation={this.changeSelectedLocation}/>
-            <CurrentForecast selectedLocation={this.state.selectedLocation} />
+            <Header 
+              changeSelectedLocation={this.changeSelectedLocation}
+              changeToHourly={this.changeToHourly}
+            />
+            <CurrentForecast 
+              selectedLocation={this.state.selectedLocation} />
+            <Navigation
+            changeToHourly={this.changeToHourly} 
+            changeToDaily={this.changeToDaily} />
           </div>
         }
-        {!this.state.displayingWelcome && 
-          <Navigation
-            changeToHourly={this.changeToHourly} 
-            changeToDaily={this.changeToDaily}/>}
         { display }
         {!this.state.displayingWelcome && <Footer />}
       </div>
