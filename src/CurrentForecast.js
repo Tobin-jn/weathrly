@@ -1,6 +1,7 @@
 import React from 'react';
 import './CurrentForecast.css'
 import { data } from './api';
+import { weatherConditions } from'./conditions'
 
 export default function CurrentForecast(props) {
   let summary = Object.values(data)[2].txt_forecast.forecastday[0].fcttext
@@ -8,8 +9,11 @@ export default function CurrentForecast(props) {
       <div className='current-page-container'>
         <h1 className='current-title'>Current Forecast</h1>
         <p className='current-date'>{Object.values(data)[2].simpleforecast.forecastday[0].date.monthname} {Object.values(data)[2].simpleforecast.forecastday[0].date.day}, {Object.values(data)[2].simpleforecast.forecastday[0].date.year}</p>
-        <img className='current-condition-icon'/>
-        
+        <img 
+          className='current-condition-icon'
+          alt= {Object.values(data)[1].weather}
+          src= {weatherConditions[Object.values(data)[1].weather].icon} 
+          />
         <p className='current-temp'>{Object.values(data)[1].temp_f}&deg;</p>
         <p className='current-high-temp'>
           High: {Object.values(data)[2].simpleforecast.forecastday[0].high.fahrenheit}&deg;</p>
