@@ -15,7 +15,7 @@ export default function HourlyForecast(props) {
                 hour={hour} 
                 key={index}
                 displayingHourlyForecast = {props.displayingHourlyForecast}
-                 />
+                />
               )
             })
           }

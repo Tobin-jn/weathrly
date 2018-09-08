@@ -20,11 +20,13 @@ export default function Card(props) {
       }
     
       { 
+        // {console.log(props.day.dailyCondition)}
         props.displayingDailyForecast &&
         <div>
           <p>{props.day.day}</p>
           <img 
-          alt= {props.day.dailyCondition} />
+          alt= {props.day.dailyCondition}
+          src= {weatherConditions[props.day.dailyCondition].icon} />
           <p>{props.day.high}&deg;</p>
           <p>{props.day.low}&deg;</p>
         </div>

@@ -113,4 +113,84 @@ export const weatherConditions = {
     condition: 'Blizzard',
     icon: './icons/snow.png'
   },
+
+  'Chance of Flurries': {
+    condition: 'Chance of Flurries',
+    icon: './icons/snow.png'
+  },
+
+  'Chance Rain': {
+    condition: 'Chance Rain',
+    icon: './icons/rain.png'
+  },
+  
+  'Chance of Freezing Rain': {
+    condition: 'Chance of Freezing Rain',
+    icon: './icons/rain.png'
+  },
+  
+  'Chance of Sleet': {
+    condition: 'Chance of Sleet',
+    icon: './icons/rain.png'
+  },
+  
+  'Chance of a Thunderstorm': {
+    condition: 'Chance of a Thunderstorm',
+    icon: './icons/thunderstorms.png'
+  },
+  
+  'Fog': {
+    condition: 'Fog',
+    icon: './icons/foggy.png'
+  },
+  
+  'Haze': {
+    condition: 'Haze',
+    icon: './icons/foggy.png'
+  },
+  
+  'Mostly Sunny': {
+    condition: 'Mostly Sunny',
+    icon: './icons/clear.png'
+  },
+  
+  'Partly Sunny': {
+    condition: 'Partly Sunny',
+    icon: './icons/partlycloudy.png'
+  },
+  
+  'Freezing Rain': {
+    condition: 'Freezing Rain',
+    icon: './icons/rain.png'
+  },
+  
+  'Sleet': {
+    condition: 'Sleet',
+    icon: './icons/rain.png'
+  },
+  
+  'Sunny': {
+    condition: 'Sunny',
+    icon: './icons/clear.png'
+  },
+  
+  'Thunderstorms': {
+    condition: 'Thunderstorms',
+    icon: './icons/thunderstorms.png'
+  },
+  
+  'Unknown': {
+    condition: 'unknown',
+    icon: './icons/clear.png'
+  },
+  
+  'Overcast': {
+    condition: 'Overcast',
+    icon: './icons/cloudy.png'
+  },
+  
+  'Scattered Clouds': {
+    condition: 'Scattered Clouds',
+    icon: './icons/partlycloudy.png'
+  }
 }
