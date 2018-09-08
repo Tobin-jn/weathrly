@@ -11,8 +11,7 @@ export default class Header extends Component {
   render() {
     return(
       <header className='header-container'>
-        <img className='logo' src='/favicon.ico'/>
-        <h1>Weathrly</h1>
+        <h1 className='header-title'>Weathrly</h1>
         <Search changeSelectedLocation={this.props.changeSelectedLocation}/>
       </header>
     );

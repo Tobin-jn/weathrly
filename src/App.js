@@ -54,8 +54,8 @@ class App extends Component {
     super()
 
     this.state = {
-      displayingWelcome: false,
-      displayingHourlyForecast: true,
+      displayingWelcome: true,
+      displayingHourlyForecast: false,
       displayingDailyForecast: false,
       selectedLocation: null,
     }
@@ -96,18 +96,16 @@ class App extends Component {
 
     return (
       <div className="App">
-        {
-          !this.state.displayingWelcome && 
+        {!this.state.displayingWelcome && 
           <div>
             <Header changeSelectedLocation={this.changeSelectedLocation}/>
-            <CurrentForecast 
-              selectedLocation={this.state.selectedLocation} />
+            <CurrentForecast selectedLocation={this.state.selectedLocation} />
           </div>
         }
-
-        <Navigation
-          changeToHourly={this.changeToHourly} 
-          changeToDaily={this.changeToDaily}/>
+        {!this.state.displayingWelcome && 
+          <Navigation
+            changeToHourly={this.changeToHourly} 
+            changeToDaily={this.changeToDaily}/>}
         { display }
         {!this.state.displayingWelcome && <Footer />}
       </div>
