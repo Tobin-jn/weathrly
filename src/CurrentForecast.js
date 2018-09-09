@@ -5,19 +5,20 @@ import { weatherConditions } from'./conditions'
 
 export default function CurrentForecast(props) {
   let summary = Object.values(data)[2].txt_forecast.forecastday[0].fcttext
+  let simpleforecastPath = Object.values(data)[2].simpleforecast.forecastday[0]
   return (
     <div>
       <div className='current-container'>
         <div className='current-info'>
           <p className='current-city'>{props.selectedLocation}</p>
-          <p className='current-date'>{Object.values(data)[2].simpleforecast.forecastday[0].date.monthname} {Object.values(data)[2].simpleforecast.forecastday[0].date.day}, {Object.values(data)[2].simpleforecast.forecastday[0].date.year}</p>
+          <p className='current-date'>{simpleforecastPath.date.monthname} {simpleforecastPath.date.day}, {simpleforecastPath.date.year}</p>
           <div className='current-temp-data'>
             <p className='current-temp'>{Object.values(data)[1].temp_f}&deg;</p>
               <div className ='current-high-low'>
             <p className='current-high-temp'>
-            High: {Object.values(data)[2].simpleforecast.forecastday[0].high.fahrenheit}&deg;</p>
+            High: {simpleforecastPath.high.fahrenheit}&deg;</p>
             <p className='current-low-temp'>
-            Low: {Object.values(data)[2].simpleforecast.forecastday[2].low.fahrenheit}&deg;</p>
+            Low: {simpleforecastPath.low.fahrenheit}&deg;</p>
                </div>
            </div>
         </div>
@@ -27,6 +28,7 @@ export default function CurrentForecast(props) {
             alt= {Object.values(data)[1].weather}
             src= {weatherConditions[Object.values(data)[1].weather].icon}
           />
+          <p className="current-condition">{simpleforecastPath.conditions}</p>
         </div>
       </div>
       <p className='current-condition-summary'>{summary}</p>
