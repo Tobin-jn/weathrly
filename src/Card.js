@@ -5,7 +5,7 @@ import { weatherConditions } from'./conditions'
 
 export default function Card(props) {
   return (
-    <div>
+    <section>
       { 
         props.displayingHourlyForecast &&
         <div className= 'hourly-card'>
@@ -18,7 +18,6 @@ export default function Card(props) {
         </div> 
       }
       { 
-        // {console.log(props.day.dailyCondition)}
         props.displayingDailyForecast &&
         <div className= 'daily-card'>
           <p className= 'daily-card-day'>{props.day.day}</p>
@@ -30,7 +29,7 @@ export default function Card(props) {
           <p className= 'daily-card-low'>{props.day.low}&deg;</p>
         </div>
       }
-    </div>
+    </section>
   );
 }
 

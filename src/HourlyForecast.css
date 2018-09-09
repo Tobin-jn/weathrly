@@ -1,7 +1,8 @@
 .hourly-card-container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
+  margin: 0 10%;
 }
 
 .hourly-title {

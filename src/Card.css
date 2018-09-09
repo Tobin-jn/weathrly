@@ -19,11 +19,17 @@
 .daily-card {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  margin: 0 10%;
 }
 
 .daily-card-icon {
   width: 5%;
   margin: 6px;
 }
+
+.daily-card-day {
+  width: 100px;
+}
+

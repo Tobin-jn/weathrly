@@ -107,8 +107,11 @@ class App extends Component {
             <CurrentForecast 
               selectedLocation={this.state.selectedLocation} />
             <Navigation
-            changeToHourly={this.changeToHourly} 
-            changeToDaily={this.changeToDaily} />
+              displayingHourlyForecast={this.state.displayingHourlyForecast}
+              displayingDailyForecast={this.state.displayingDailyForecast}
+              changeToHourly={this.changeToHourly} 
+              changeToDaily={this.changeToDaily} 
+            />
           </div>
         }
         { display }
