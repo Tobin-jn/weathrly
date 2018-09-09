@@ -4,29 +4,38 @@
   justify-content: center;
   background-image: url('/welcome.jpg');
   background-size: cover;
+  background-attachment: fixed;
   height: 100vh;
 }
 
 .welcome-header {
   color: #fff;
   font-family: 'Permanent Marker', cursive;
-  font-size: 150px;
+  font-size: 6em;
   text-align: center;
-  margin: 0 0;
+  margin: 40px 0 80px;
 }
 
 .welcome-search {
-  display: grid;
-  width: 350px;
+  display: flex;
   margin: auto;
+  flex-direction: column;
 }
 
 .welcome-search p {
   color: #fff;
   text-align: center;
-  font-size: 1.75em;
+  font-size: 1.5em;
   margin: 150px 0 50px;
 }
+
+.welcome-search form {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  margin: 30px auto;
+
+  }
 
 .welcome-search input {
   height: 40px;
