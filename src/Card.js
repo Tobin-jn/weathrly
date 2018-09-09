@@ -20,14 +20,14 @@ export default function Card(props) {
       { 
         // {console.log(props.day.dailyCondition)}
         props.displayingDailyForecast &&
-        <div>
-          <p>{props.day.day}</p>
+        <div className= 'daily-card'>
+          <p className= 'daily-card-day'>{props.day.day}</p>
           <img 
-          className= 'dailycard-icon'
+          className= 'daily-card-icon'
           alt= {props.day.dailyCondition}
           src= {weatherConditions[props.day.dailyCondition].icon} />
-          <p>{props.day.high}&deg;</p>
-          <p>{props.day.low}&deg;</p>
+          <p className= 'daily-card-high'>{props.day.high}&deg;</p>
+          <p className= 'daily-card-low'>{props.day.low}&deg;</p>
         </div>
       }
     </div>

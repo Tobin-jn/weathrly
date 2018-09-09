@@ -15,3 +15,15 @@
 .hourly-card-temp {
   text-align: center;
 }
+
+.daily-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.daily-card-icon {
+  width: 5%;
+  margin: 6px;
+}
