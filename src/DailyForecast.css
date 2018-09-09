@@ -1,6 +1,9 @@
-.daily-title, 
-.daily-city,
 .daily-card-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.daily-title {
   text-align: center;
 }
 

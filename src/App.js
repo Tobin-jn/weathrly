@@ -13,7 +13,7 @@ import { data } from './api';
 //Hourly data
 const dataPathHourly = Object.values(data)[3];
 const hourCondition = dataPathHourly.map( hour => hour.condition );
-const hour = dataPathHourly.map( hour => hour.FCTTIME.hour );
+const hour = dataPathHourly.map( hour => hour.FCTTIME.civil );
 const hourlyTemp = dataPathHourly.map( hour => hour.temp.english );
 const hourlyWeatherData = hourlyTemp.map((element, index) => {
   return { 
@@ -107,8 +107,11 @@ class App extends Component {
             <CurrentForecast 
               selectedLocation={this.state.selectedLocation} />
             <Navigation
-            changeToHourly={this.changeToHourly} 
-            changeToDaily={this.changeToDaily} />
+              displayingHourlyForecast={this.state.displayingHourlyForecast}
+              displayingDailyForecast={this.state.displayingDailyForecast}
+              changeToHourly={this.changeToHourly} 
+              changeToDaily={this.changeToDaily} 
+            />
           </div>
         }
         { display }

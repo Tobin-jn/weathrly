@@ -5,30 +5,31 @@ import { weatherConditions } from'./conditions'
 
 export default function Card(props) {
   return (
-    <div>
+    <section>
       { 
         props.displayingHourlyForecast &&
-        <div>
-          <p>{props.hour.temp}&deg;</p>
+        <div className= 'hourly-card'>
+          <p className= 'hourly-card-hour'>{props.hour.hour}</p>
           <img 
+          className= 'hourly-card-icon'
           alt= {props.hour.hourCondition} 
           src= {weatherConditions[props.hour.hourCondition].icon} />
-          <p>{props.hour.hour} o'clock</p>
+          <p className= 'hourly-card-temp'>{props.hour.temp}&deg;</p>
         </div> 
       }
       { 
-        // {console.log(props.day.dailyCondition)}
         props.displayingDailyForecast &&
-        <div>
-          <p>{props.day.day}</p>
+        <div className= 'daily-card'>
+          <p className= 'daily-card-day'>{props.day.day}</p>
           <img 
+          className= 'daily-card-icon'
           alt= {props.day.dailyCondition}
           src= {weatherConditions[props.day.dailyCondition].icon} />
-          <p>{props.day.high}&deg;</p>
-          <p>{props.day.low}&deg;</p>
+          <p className= 'daily-card-high'>{props.day.high}&deg;</p>
+          <p className= 'daily-card-low'>{props.day.low}&deg;</p>
         </div>
       }
-    </div>
+    </section>
   );
 }
 
