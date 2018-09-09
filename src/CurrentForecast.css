@@ -20,7 +20,19 @@
 }
 
 .current-icon {
-  margin: 50px 50px 0 0;
+  margin: 22px 105px 0 0;
+  width: 30%;
+}
+
+.current-condition {
+  text-align: center;
+  width: 120%;
+  margin: 0;
+}
+
+.current-condition-icon {
+  width: 120%;
+  margin-bottom: -8px;
 }
 
 .current-condition-summary {
