@@ -8,7 +8,7 @@ import CurrentForecast from './CurrentForecast'
 import HourlyForecast from './HourlyForecast'
 import DailyForecast from './DailyForecast'
 import './App.css';
-import { data } from './api';
+import { data, cities } from './api';
 
 //Hourly data
 const dataPathHourly = Object.values(data)[3];
@@ -46,7 +46,22 @@ class App extends Component {
       displayingWelcome: true,
       displayingHourlyForecast: false,
       displayingDailyForecast: false,
-      selectedLocation: ''
+      selectedLocation: '',
+      verifiedLocation: true
+    };
+  };
+
+  checkInputLocation = (input) => {
+    if (data.current_observation.display_location.city !== input) {
+      this.setState({
+      displayingWelcome: false,
+      displayingHourlyForecast: false,
+      displayingDailyForecast: false,
+      verifiedLocation: false
+      })
+    } else {
+      this.changeSelectedLocation(input)
+      this.changeToHourly()
     }
   }
 
@@ -80,7 +95,8 @@ class App extends Component {
       display = <Welcome 
         changeSelectedLocation={this.changeSelectedLocation}
         changeToHourly={this.changeToHourly}
-        />
+        checkInputLocation={this.checkInputLocation}
+      />
     }
 
     if (this.state.displayingHourlyForecast){
@@ -115,7 +131,6 @@ class App extends Component {
           </div>
         }
         { display }
-        {!this.state.displayingWelcome && <Footer />}
       </div>
     );
   }

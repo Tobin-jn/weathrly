@@ -11,6 +11,7 @@ export default function Welcome(props) {
           changeSelectedLocation={props.changeSelectedLocation}
           changeToHourly={props.changeToHourly}
           selectedLocation={props.selectedLocation}
+          checkInputLocation={props.checkInputLocation}
         />
       </div>
   );

@@ -62,6 +62,10 @@
   pointer-events: cursor;
 }
 
+.header-search button:focus {
+  outline: none;
+}
+
 .hide {
   display: none;
 }
