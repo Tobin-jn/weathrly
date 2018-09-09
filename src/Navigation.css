@@ -1,0 +1,21 @@
+.nav-container {
+  margin: 0 10%;
+  border-bottom: 2px solid #fff;;
+}
+
+.nav-container button {
+  font-size: 1.25em;
+  background-color: inherit;
+  color: #fff;
+}
+
+.nav-button-hourly {
+  border: none;
+  border-right: 2px solid #fff;
+  padding-right: 18px;
+}
+
+.nav-button-daily {
+  border: none;
+  padding-left: 18px;
+}

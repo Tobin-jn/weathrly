@@ -3,10 +3,8 @@ import React from 'react';
 import './Card.css'
 import { weatherConditions } from'./conditions'
 
-
 export default function Card(props) {
   return (
-
     <div>
       { 
         props.displayingHourlyForecast &&
@@ -18,7 +16,6 @@ export default function Card(props) {
           <p>{props.hour.hour} o'clock</p>
         </div> 
       }
-    
       { 
         // {console.log(props.day.dailyCondition)}
         props.displayingDailyForecast &&
@@ -31,7 +28,6 @@ export default function Card(props) {
           <p>{props.day.low}&deg;</p>
         </div>
       }
-      
     </div>
   );
 }

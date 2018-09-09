@@ -1,11 +1,41 @@
-.current-title, 
-.current-date,
-.current-condition-icon,
-.current-temp,
-.current-high-temp,
-.current-low-temp,
-.current-city,
-.current-condition-summary {
-  text-align: center;
+.current-container {
+  width: 500px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
 }
 
+.current-city {
+  font-size: 3em;
+  margin: 10px 0;
+}
+
+.current-date {
+  margin: 0;
+}
+
+.current-temp {
+  font-size: 6em;
+  margin: 0 0 20px;
+}
+
+.current-icon {
+  margin: 50px 50px 0 0;
+}
+
+.current-condition-summary {
+  margin: 0 auto 50px;
+  width: 500px;
+}
+
+.current-temp-data {
+  display: flex;
+}
+
+.current-high-low {
+  padding-top:70px;
+}
+
+.current-high-temp, .current-low-temp {
+  margin: 0;
+}
