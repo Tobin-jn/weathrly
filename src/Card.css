@@ -1,0 +1,17 @@
+.hourly-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.hourly-card-hour {
+  text-align: center;
+}
+
+.hourly-card-icon {
+  width: 70%;
+  margin: auto;
+}
+
+.hourly-card-temp {
+  text-align: center;
+}

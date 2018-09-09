@@ -8,12 +8,13 @@ export default function Card(props) {
     <div>
       { 
         props.displayingHourlyForecast &&
-        <div>
-          <p>{props.hour.temp}&deg;</p>
+        <div className= 'hourly-card'>
+          <p className= 'hourly-card-hour'>{props.hour.hour}</p>
           <img 
+          className= 'hourly-card-icon'
           alt= {props.hour.hourCondition} 
           src= {weatherConditions[props.hour.hourCondition].icon} />
-          <p>{props.hour.hour} o'clock</p>
+          <p className= 'hourly-card-temp'>{props.hour.temp}&deg;</p>
         </div> 
       }
       { 
@@ -22,6 +23,7 @@ export default function Card(props) {
         <div>
           <p>{props.day.day}</p>
           <img 
+          className= 'dailycard-icon'
           alt= {props.day.dailyCondition}
           src= {weatherConditions[props.day.dailyCondition].icon} />
           <p>{props.day.high}&deg;</p>
