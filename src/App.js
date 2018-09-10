@@ -7,8 +7,12 @@ import Footer from './Footer';
 import CurrentForecast from './CurrentForecast'
 import HourlyForecast from './HourlyForecast'
 import DailyForecast from './DailyForecast'
+import { config } from './config.js'
 import './App.css';
 import { data, cities } from './api';
+
+const key = config.weatherKey;
+console.log(key)
 
 //Hourly data
 const dataPathHourly = Object.values(data)[3];
