@@ -69,8 +69,14 @@ class App extends Component {
     })
   }
 
-  fetchWeather = (city, state) => {
-    let url = `https://api.wunderground.com/api/${key}/conditions/hourly/forecast10day/q/${state}/${city}.json`
+  // componentDidMount(url) {
+    //when we have local storage
+  // }
+
+  fetchWeather = (location) => {
+    let url = `https://api.wunderground.com/api/${key}/conditions/hourly/forecast10day/q/${location}.json`
+    console.log(url)
+    
     fetch(url)
       .then(data => data.json())
       .then(data => {
