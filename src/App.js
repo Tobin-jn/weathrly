@@ -73,7 +73,7 @@ class App extends Component {
   // }
 
   fetchWeather = (city, state) => {
-    let url = `https://api.wunderground.com/api/${key}/conditions/hourly/forecast/10day/q/${state}/${city}.json`
+    let url = `https://api.wunderground.com/api/${key}/conditions/hourly/forecast10day/q/${state}/${city}.json`
     
     console.log(url)
 // debugger
