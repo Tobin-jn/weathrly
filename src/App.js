@@ -92,6 +92,7 @@ class App extends Component {
       })
       // .then(console.log('hi'))
       .catch(err => console.log(err))
+    }
 
   changeSelectedLocation = (city, state) => {
     this.setState({
