@@ -16,6 +16,7 @@ export default class Header extends Component {
           selectedLocation={this.props.selectedLocation}
           checkInputLocation={this.props.checkInputLocation}
           fetchWeather={this.props.fetchWeather}
+          isLoaded={this.props.isLoaded}
         />
       </header>
     );

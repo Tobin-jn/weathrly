@@ -13,6 +13,7 @@ export default function Welcome(props) {
           selectedLocation={props.selectedLocation}
           checkInputLocation={props.checkInputLocation}
           fetchWeather={props.fetchWeather}
+          isLoaded={props.isLoaded}
         />
       </div>
   );
