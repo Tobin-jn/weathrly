@@ -7,14 +7,21 @@ export default class Search extends Component {
     super(props);
 
     this.state = {
-      location: ''
+      selectedCity: '',
+      selectedState: ''
     }
   }
+
+    // 
+    // console.log(locationArray)
+    // this.setState({
+    //   selectedCity: locationArray[0].slice(0, -1),
+    //   selectedState: locationArray[1]
 
   handleSubmit = (event) => {
     event.preventDefault();
     // this.props.checkInputLocation(this.state.location)
-    this.props.changeSelectedLocation(this.state.location)
+    this.props.changeSelectedLocation(this.state.selectedCity, this.state.selectedState)
     this.props.changeToHourly()
   }
 
@@ -29,8 +36,10 @@ export default class Search extends Component {
             value = {this.state.location}
             placeholder = {this.props.selectedLocation ? 'Enter new city or zipcode' : ''}
             onChange = {(event) => {
+              let locationArray = event.target.value.split(' ');
               this.setState({
-                location: (event.target.value)
+                selectedCity: locationArray[0].slice(0, -1),
+                selectedState: locationArray[1]
               })
             }}
           />

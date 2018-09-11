@@ -25,7 +25,9 @@ class App extends Component {
       verifiedLocation: true,
       cityData: {},  
       hourlyData: {},
-      dailyData: {}
+      dailyData: {},
+      selectedCity: '',
+      selectedState: ''
     };
   };
 
@@ -66,8 +68,15 @@ class App extends Component {
   }
 
   componentDidMount() {
-  fetch(`https://api.wunderground.com/api/${key}/conditions/hourly/forecast/10day/q/CO/Denver.json`)
+    // this.fetchWeather(this.state.selectedCity, this.state.selectedState);
+    this.fetchWeather();
+}
+
+  fetchWeather() {
+      // fetch(`https://api.wunderground.com/api/${key}/conditions/hourly/forecast/10day/q/${state}/${city}.json`)
+      fetch(`https://api.wunderground.com/api/${key}/conditions/hourly/forecast/10day/q/IL/Chicago.json`)
     .then(response => response.json())
+    // .then(response => console.log(response))
     .then(response => {
       this.setState({
         cityData: response
@@ -80,6 +89,7 @@ class App extends Component {
     })   
   }
 
+  
   checkInputLocation = (input) => {
     if (data.current_observation.display_location.city !== input) {
       this.setState({
@@ -94,9 +104,10 @@ class App extends Component {
     }
   }
 
-  changeSelectedLocation = (location) => {
+  changeSelectedLocation = (city, state) => {
     this.setState({
-      selectedLocation: location
+      selectedCity: city,
+      selectedState: state
     });
   }
 
