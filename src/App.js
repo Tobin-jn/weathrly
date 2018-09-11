@@ -9,7 +9,7 @@ import HourlyForecast from './HourlyForecast'
 import DailyForecast from './DailyForecast'
 import { config } from './config.js'
 import './App.css';
-import { data, cities } from './api';
+// import { data, cities } from './api';
 
 const key = config.weatherKey;
 
@@ -23,9 +23,12 @@ class App extends Component {
       displayingDailyForecast: false,
       selectedLocation: '',
       verifiedLocation: true,
-      cityData: {},  
-      hourlyData: {},
-      dailyData: {}
+      cityData: null,  
+      hourlyData: [],
+      dailyData: [],
+      selectedCity: '',
+      selectedState: '',
+      isLoaded: false
     };
   };
 
@@ -65,48 +68,67 @@ class App extends Component {
     })
   }
 
-  componentDidMount() {
-  fetch(`https://api.wunderground.com/api/${key}/conditions/hourly/forecast/10day/q/CO/Denver.json`)
-    .then(response => response.json())
-    .then(response => {
-      this.setState({
-        cityData: response
-      })
-      this.updateHourlyData();
-      this.updateDailyData()
-    }) 
-    .catch(error => {
-      console.log(error);
-    })   
-  }
+  // componentDidMount(url) {
+    //when we have local storage
+  // }
 
-  checkInputLocation = (input) => {
-    if (data.current_observation.display_location.city !== input) {
-      this.setState({
-      displayingWelcome: false,
-      displayingHourlyForecast: false,
-      displayingDailyForecast: false,
-      verifiedLocation: false
+  fetchWeather = (city, state) => {
+    let url = `https://api.wunderground.com/api/${key}/conditions/hourly/forecast10day/q/${state}/${city}.json`
+    
+    console.log(url)
+// debugger
+    fetch(url)
+      .then(data => data.json())
+      // .then(data => console.log('data: ', data))
+      .then(data => {
+        this.setState({
+          cityData: data,
+          isLoaded: true,
+          displayingWelcome: false,
+          displayingHourlyForecast: true,
+          displayingDailyForecast: false
+        })
+        this.updateHourlyData();
+        this.updateDailyData();
       })
-    } else {
-      this.changeSelectedLocation(input)
-      this.changeToHourly()
-    }
-  }
+      // .then(console.log('hi'))
+      .catch(err => console.log(err))
 
-  changeSelectedLocation = (location) => {
+      // if(this.state.cityData){
+      //   this.changeToHourly()
+      // }
+  }  
+  
+  // checkInputLocation = (input) => {
+  //   if (data.current_observation.display_location.city !== input) {
+  //     this.setState({
+  //     displayingWelcome: false,
+  //     displayingHourlyForecast: false,
+  //     displayingDailyForecast: false,
+  //     verifiedLocation: false
+  //     })
+  //   } else {
+  //     this.changeSelectedLocation(input)
+  //     this.changeToHourly()
+  //   }
+  // }
+
+  changeSelectedLocation = (city, state) => {
     this.setState({
-      selectedLocation: location
+      selectedCity: city,
+      selectedState: state
     });
   }
 
-  changeToHourly = () => {
-    this.setState({
-      displayingWelcome: false,
-      displayingHourlyForecast: true,
-      displayingDailyForecast: false
-    });
-  }
+  // changeToHourly = () => {
+  //   if ( this.state.cityData ){
+  //     this.setState({
+  //       displayingWelcome: false,
+  //       displayingHourlyForecast: true,
+  //       displayingDailyForecast: false
+  //     })
+  //   }
+  // }
 
   changeToDaily = () => {
     this.setState({
@@ -119,12 +141,25 @@ class App extends Component {
   render() {
     let display;
 
+    // if (!this.state.cityData){
+    //   console.log("no data")
+    //     display = <Welcome 
+    //     changeSelectedLocation={this.changeSelectedLocation}
+    //     changeToHourly={this.changeToHourly}
+    //     checkInputLocation={this.checkInputLocation}
+    //     fetchWeather={this.fetchWeather}
+    //   />
+    // } else {
+    //   this.changeToHourly()
+    // }
+
+
     if (this.state.displayingWelcome) {
-      console.log('test')
       display = <Welcome 
         changeSelectedLocation={this.changeSelectedLocation}
         changeToHourly={this.changeToHourly}
         checkInputLocation={this.checkInputLocation}
+        fetchWeather={this.fetchWeather}
       />
     }
 
@@ -145,15 +180,16 @@ class App extends Component {
         dailyData = {this.state.dailyData}
       />
     }
-
+  
     return (
       <div className="App">
-        {!this.state.displayingWelcome && 
+        {this.state.isLoaded &&  
           <div>
             <Header 
               changeSelectedLocation={this.changeSelectedLocation}
               changeToHourly={this.changeToHourly}
               selectedLocation={this.state.selectedLocation}
+              fetchWeather={this.fetchWeather}
             />
             <CurrentForecast 
               selectedLocation={this.state.selectedLocation}

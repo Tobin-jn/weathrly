@@ -7,19 +7,23 @@ export default class Search extends Component {
     super(props);
 
     this.state = {
-      location: ''
+      selectedCity: '',
+      selectedState: ''
     }
   }
 
+
   handleSubmit = (event) => {
     event.preventDefault();
-    // this.props.checkInputLocation(this.state.location)
-    this.props.changeSelectedLocation(this.state.location)
-    this.props.changeToHourly()
+
+    this.props.changeSelectedLocation(this.state.selectedCity, this.state.selectedState)
+
+    this.props.fetchWeather(this.state.selectedCity, this.state.selectedState);
+
+    // this.props.changeToHourly()
   }
 
   render() {
-    console.log(this.props)
     return (
       <div className={this.props.selectedLocation ? 'header-search' : 'welcome-search'}>
         <p className={this.props.selectedLocation ? 'hide' : 'welcome-search'}>Enter your city or zipcode to get the weather.</p>
@@ -29,8 +33,10 @@ export default class Search extends Component {
             value = {this.state.location}
             placeholder = {this.props.selectedLocation ? 'Enter new city or zipcode' : ''}
             onChange = {(event) => {
+              let locationArray = event.target.value.split(' ');
               this.setState({
-                location: (event.target.value)
+                selectedCity: locationArray[0].slice(0, -1),
+                selectedState: locationArray[1]
               })
             }}
           />
