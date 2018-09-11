@@ -7,8 +7,9 @@ export default class Search extends Component {
     super(props);
 
     this.state = {
-      selectedCity: '',
-      selectedState: ''
+      // selectedCity: '',
+      // selectedState: '',
+      location: ''
     }
   }
 
@@ -18,9 +19,21 @@ export default class Search extends Component {
 
     this.props.changeSelectedLocation(this.state.selectedCity, this.state.selectedState)
 
-    this.props.fetchWeather(this.state.selectedCity, this.state.selectedState);
+    // this.props.fetchWeather(this.state.selectedCity, this.state.selectedState);
+    this.props.fetchWeather(this.state.location);
 
     // this.props.changeToHourly()
+  }
+
+  returnURLInput = (string) => {
+    let location;
+    if (parseInt(string)){
+      location = string
+    } else {
+      let locationArray = string.split(' ');
+      location = `${locationArray[1]}/${locationArray[0].slice(0, -1)}`
+    }
+    return location
   }
 
   render() {
@@ -30,13 +43,12 @@ export default class Search extends Component {
         <form onSubmit={this.handleSubmit}>
           <input
             type = 'text'
-            value = {this.state.location}
             placeholder = {this.props.selectedLocation ? 'Enter new city or zipcode' : ''}
             onChange = {(event) => {
-              let locationArray = event.target.value.split(' ');
+
+                let locationValue = this.returnURLInput(event.target.value)
               this.setState({
-                selectedCity: locationArray[0].slice(0, -1),
-                selectedState: locationArray[1]
+                location: locationValue
               })
             }}
           />
