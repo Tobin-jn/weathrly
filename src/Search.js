@@ -13,7 +13,7 @@ export default class Search extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.checkInputLocation(this.state.location)
+    // this.props.checkInputLocation(this.state.location)
     this.props.changeSelectedLocation(this.state.location)
     this.props.changeToHourly()
   }
