@@ -28,12 +28,13 @@ class App extends Component {
       dailyData: [],
       selectedCity: '',
       selectedState: '',
-      isLoaded: false
+      isLoaded: false,
     };
   };
 
-  updateHourlyData = () => {
-    const dataPathHourly = Object.values(this.state.cityData)[3];
+  updateHourlyData = (data) => {
+    console.log("hi")
+    const dataPathHourly = Object.values(data)[3];
     const hourCondition = dataPathHourly.map( hour => hour.condition );
     const hour = dataPathHourly.map( hour => hour.FCTTIME.civil );
     const hourlyTemp = dataPathHourly.map( hour => parseInt(hour.temp.english) );
@@ -69,9 +70,11 @@ class App extends Component {
     })
   }
 
-  // componentDidMount(url) {
-    //when we have local storage
-  // }
+  
+  componentDidMount() {
+    this.getFromLocalStorage()
+  }
+  
 
   fetchWeather = (location) => {
     let url = `https://api.wunderground.com/api/${key}/conditions/hourly/forecast10day/q/${location}.json`
@@ -85,13 +88,33 @@ class App extends Component {
           isLoaded: true,
           displayingWelcome: false,
           displayingHourlyForecast: true,
-          displayingDailyForecast: false
+          displayingDailyForecast: false,
+
         })
-        this.updateHourlyData();
+        this.setLocalStorage();
+        this.updateHourlyData(this.state.cityData);
         this.updateDailyData();
       })
       // .then(console.log('hi'))
       .catch(err => console.log(err))
+    }
+
+  setLocalStorage = () => {
+    localStorage.setItem('cityData', JSON.stringify(this.state.cityData))
+  }
+
+  getFromLocalStorage() {
+    const cityData = localStorage.getItem('cityData')
+
+    if (cityData) {
+
+      this.changeToHourly();
+      this.setState({ cityData: JSON.parse(cityData) })
+
+      this.updateHourlyData(cityData);
+      this.updateDailyData(cityData);
+    }
+  }
 
   changeSelectedLocation = (city, state) => {
     this.setState({
