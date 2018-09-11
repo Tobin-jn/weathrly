@@ -32,9 +32,9 @@ class App extends Component {
     };
   };
 
-  updateHourlyData = (data) => {
+  updateHourlyData = () => {
     console.log("hi")
-    const dataPathHourly = Object.values(data)[3];
+    const dataPathHourly = Object.values(this.state.cityData)[3];
     const hourCondition = dataPathHourly.map( hour => hour.condition );
     const hour = dataPathHourly.map( hour => hour.FCTTIME.civil );
     const hourlyTemp = dataPathHourly.map( hour => parseInt(hour.temp.english) );
@@ -92,7 +92,7 @@ class App extends Component {
 
         })
         this.setLocalStorage();
-        this.updateHourlyData(this.state.cityData);
+        this.updateHourlyData();
         this.updateDailyData();
       })
       // .then(console.log('hi'))
@@ -111,8 +111,8 @@ class App extends Component {
       this.changeToHourly();
       this.setState({ cityData: JSON.parse(cityData) })
 
-      this.updateHourlyData(cityData);
-      this.updateDailyData(cityData);
+      this.updateHourlyData();
+      this.updateDailyData();
     }
   }
 
