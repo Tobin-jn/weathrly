@@ -15,6 +15,7 @@ export default class Header extends Component {
           changeToHourly={this.props.changeToHourly}
           selectedLocation={this.props.selectedLocation}
           checkInputLocation={this.props.checkInputLocation}
+          splitCityAndState ={this.props.splitCityAndState}
         />
       </header>
     );

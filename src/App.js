@@ -25,7 +25,9 @@ class App extends Component {
       verifiedLocation: true,
       cityData: {},  
       hourlyData: {},
-      dailyData: {}
+      dailyData: {},
+      selectedCity: '',
+      selectedState: ''
     };
   };
 
@@ -46,6 +48,7 @@ class App extends Component {
       hourlyData: hourlyWeatherData
     }) 
   }
+
   updateDailyData = () => {
     const dataPathDaily = Object.values(this.state.cityData)[2].simpleforecast.forecastday
     const weekday = dataPathDaily.map( entry => entry.date.weekday );
@@ -65,20 +68,24 @@ class App extends Component {
     })
   }
 
-  componentDidMount() {
-  fetch(`https://api.wunderground.com/api/${key}/conditions/hourly/forecast/10day/q/CO/Denver.json`)
-    .then(response => response.json())
-    .then(response => {
-      this.setState({
-        cityData: response
-      })
-      this.updateHourlyData();
-      this.updateDailyData()
-    }) 
-    .catch(error => {
-      console.log(error);
-    })   
-  }
+  componentDidMount = () => {
+    let city = this.state.selectedCity;
+    let stateAbr = this.state.selectedState
+    fetch(`https://api.wunderground.com/api/${key}/conditions/hourly/forecast/10day/q/${stateAbr}/${city}.json`)
+      .then(response => response.json())
+      .then(response => console.log(response))
+
+      .then(response => {
+        this.setState({
+          cityData: response
+        })
+        this.updateHourlyData();
+        this.updateDailyData()
+      }) 
+      .catch(error => {
+        console.log(error);
+      })   
+    }
 
   checkInputLocation = (input) => {
     if (data.current_observation.display_location.city !== input) {
@@ -95,9 +102,14 @@ class App extends Component {
   }
 
   changeSelectedLocation = (location) => {
+    let locationArray = location.split(' ');
+    console.log(locationArray)
     this.setState({
-      selectedLocation: location
-    });
+      selectedCity: locationArray[0].slice(0, -1),
+      selectedState: locationArray[1]
+    // this.setState({
+    //   selectedLocation: location
+    })
   }
 
   changeToHourly = () => {
@@ -120,11 +132,12 @@ class App extends Component {
     let display;
 
     if (this.state.displayingWelcome) {
-      console.log('test')
       display = <Welcome 
         changeSelectedLocation={this.changeSelectedLocation}
         changeToHourly={this.changeToHourly}
         checkInputLocation={this.checkInputLocation}
+        splitCityAndState ={this.splitCityAndState}
+
       />
     }
 
@@ -154,6 +167,8 @@ class App extends Component {
               changeSelectedLocation={this.changeSelectedLocation}
               changeToHourly={this.changeToHourly}
               selectedLocation={this.state.selectedLocation}
+              splitCityAndState ={this.splitCityAndState}
+
             />
             <CurrentForecast 
               selectedLocation={this.state.selectedLocation}
