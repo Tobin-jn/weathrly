@@ -1,6 +1,9 @@
 .current-container {
   width: 500px;
   margin: auto;
+}
+
+.current-subcontainer {
   display: flex;
   justify-content: space-between;
 }
@@ -8,6 +11,11 @@
 .current-city {
   font-size: 3em;
   margin: 10px 0;
+  text-transform: capitalize;
+}
+
+.to-upper-case {
+  text-transform: uppercase;
 }
 
 .current-date {
@@ -20,8 +28,9 @@
 }
 
 .current-icon {
-  margin: 22px 105px 0 0;
-  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .current-condition {
@@ -33,6 +42,7 @@
 .current-condition-icon {
   width: 120%;
   margin-bottom: -8px;
+  float: right;
 }
 
 .current-condition-summary {

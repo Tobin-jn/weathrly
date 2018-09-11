@@ -38,8 +38,8 @@ export default class Search extends Component {
 
   render() {
     return (
-      <div className={this.props.selectedLocation ? 'header-search' : 'welcome-search'}>
-        <p className={this.props.selectedLocation ? 'hide' : 'welcome-search'}>Enter your city or zipcode to get the weather.</p>
+      <div className={this.props.isLoaded ? 'header-search' : 'welcome-search'}>
+        <p className={this.props.isLoaded ? 'hide' : 'welcome-search'}>Enter your city or zipcode to get the weather.</p>
         <form onSubmit={this.handleSubmit}>
           <input
             type = 'text'
@@ -52,7 +52,7 @@ export default class Search extends Component {
               })
             }}
           />
-        <button>{this.props.selectedLocation ? <img src='./icons/search.svg' /> : 'Get Weather'}</button>
+        <button>{this.props.isLoaded ? <img src='./icons/search.svg' /> : 'Get Weather'}</button>
         </form>
       </div>
     );
