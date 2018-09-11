@@ -23,7 +23,7 @@ class App extends Component {
       displayingDailyForecast: false,
       selectedLocation: '',
       verifiedLocation: true,
-      cityData: {},  
+      cityData: undefined,  
       hourlyData: {},
       dailyData: {},
       selectedCity: '',
@@ -67,34 +67,25 @@ class App extends Component {
     })
   }
 
-  componentDidMount() {
-    // this.fetchWeather(this.state.selectedCity, this.state.selectedState);
-    this.fetchWeather();
-          this.updateHourlyData();
-      this.updateDailyData()
-    
+  componentDidMount(url) {
+    //when we have local storage
   }
 
-  fetchWeather = () => {
-    let state = 'CO'
-    let city = 'Denver'
+  fetchWeather = (city, state) => {
     let url = `https://api.wunderground.com/api/${key}/conditions/hourly/forecast/10day/q/${state}/${city}.json`
+    
     console.log(url)
-    console.log(this.state.selectedState)
-      // fetch(`https://api.wunderground.com/api/${key}/conditions/hourly/forecast/10day/q/${state}/${city}.json`)
-    fetch(url)
-    .then(response => response.json())
-    // .then(response => console.log(response))
-    .then(response => {
-      this.setState({
-        cityData: response
-      })
 
-    }) 
-    .catch(error => {
-      console.log(error);
-    })   
-  }
+    fetch(url)
+      .then(data => data.json())
+      .then(data => console.log('data: ', data))
+      .catch(err => console.log(err))
+
+   
+    // fetch(`https://api.wunderground.com/api/${key}/conditions/hourly/forecast/10day/q/CO/Denver.json`)
+    // this.componentDidMount(url)
+  } 
+    
 
   
   checkInputLocation = (input) => {
@@ -119,11 +110,13 @@ class App extends Component {
   }
 
   changeToHourly = () => {
-    this.setState({
-      displayingWelcome: false,
-      displayingHourlyForecast: true,
-      displayingDailyForecast: false
-    });
+    if ( this.state.cityData ){
+      this.setState({
+        displayingWelcome: false,
+        displayingHourlyForecast: true,
+        displayingDailyForecast: false
+      })
+    }
   }
 
   changeToDaily = () => {
@@ -143,6 +136,7 @@ class App extends Component {
         changeSelectedLocation={this.changeSelectedLocation}
         changeToHourly={this.changeToHourly}
         checkInputLocation={this.checkInputLocation}
+        fetchWeather={this.fetchWeather}
       />
     }
 
@@ -172,6 +166,7 @@ class App extends Component {
               changeSelectedLocation={this.changeSelectedLocation}
               changeToHourly={this.changeToHourly}
               selectedLocation={this.state.selectedLocation}
+              fetchWeather={this.fetchWeather}
             />
             <CurrentForecast 
               selectedLocation={this.state.selectedLocation}

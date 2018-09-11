@@ -17,6 +17,7 @@ export default class Search extends Component {
     event.preventDefault();
     // this.props.checkInputLocation(this.state.location)
     this.props.changeSelectedLocation(this.state.selectedCity, this.state.selectedState)
+    this.props.fetchWeather(this.state.selectedCity, this.state.selectedState);
     this.props.changeToHourly()
   }
 
