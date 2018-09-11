@@ -70,11 +70,17 @@ class App extends Component {
   componentDidMount() {
     // this.fetchWeather(this.state.selectedCity, this.state.selectedState);
     this.fetchWeather();
-}
+    
+  }
 
-  fetchWeather() {
+  fetchWeather = () => {
+    let state = 'CO'
+    let city = 'Denver'
+    let url = `https://api.wunderground.com/api/${key}/conditions/hourly/forecast/10day/q/${state}/${city}.json`
+    console.log(url)
+    console.log(this.state.selectedState)
       // fetch(`https://api.wunderground.com/api/${key}/conditions/hourly/forecast/10day/q/${state}/${city}.json`)
-      fetch(`https://api.wunderground.com/api/${key}/conditions/hourly/forecast/10day/q/IL/Chicago.json`)
+    fetch(url)
     .then(response => response.json())
     // .then(response => console.log(response))
     .then(response => {

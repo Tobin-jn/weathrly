@@ -12,11 +12,6 @@ export default class Search extends Component {
     }
   }
 
-    // 
-    // console.log(locationArray)
-    // this.setState({
-    //   selectedCity: locationArray[0].slice(0, -1),
-    //   selectedState: locationArray[1]
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -26,7 +21,7 @@ export default class Search extends Component {
   }
 
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     return (
       <div className={this.props.selectedLocation ? 'header-search' : 'welcome-search'}>
         <p className={this.props.selectedLocation ? 'hide' : 'welcome-search'}>Enter your city or zipcode to get the weather.</p>
