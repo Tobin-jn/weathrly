@@ -70,6 +70,8 @@ class App extends Component {
   componentDidMount() {
     // this.fetchWeather(this.state.selectedCity, this.state.selectedState);
     this.fetchWeather();
+          this.updateHourlyData();
+      this.updateDailyData()
     
   }
 
@@ -87,8 +89,7 @@ class App extends Component {
       this.setState({
         cityData: response
       })
-      this.updateHourlyData();
-      this.updateDailyData()
+
     }) 
     .catch(error => {
       console.log(error);
