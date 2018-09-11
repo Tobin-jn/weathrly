@@ -9,7 +9,7 @@ import HourlyForecast from './HourlyForecast'
 import DailyForecast from './DailyForecast'
 import { config } from './config.js'
 import './App.css';
-import { data, cities } from './api';
+// import { data, cities } from './api';
 
 const key = config.weatherKey;
 
@@ -88,6 +88,8 @@ class App extends Component {
           displayingHourlyForecast: true,
           displayingDailyForecast: false
         })
+        this.updateHourlyData();
+        this.updateDailyData();
       })
       // .then(console.log('hi'))
       .catch(err => console.log(err))
@@ -97,19 +99,19 @@ class App extends Component {
       // }
   }  
   
-  checkInputLocation = (input) => {
-    if (data.current_observation.display_location.city !== input) {
-      this.setState({
-      displayingWelcome: false,
-      displayingHourlyForecast: false,
-      displayingDailyForecast: false,
-      verifiedLocation: false
-      })
-    } else {
-      this.changeSelectedLocation(input)
-      this.changeToHourly()
-    }
-  }
+  // checkInputLocation = (input) => {
+  //   if (data.current_observation.display_location.city !== input) {
+  //     this.setState({
+  //     displayingWelcome: false,
+  //     displayingHourlyForecast: false,
+  //     displayingDailyForecast: false,
+  //     verifiedLocation: false
+  //     })
+  //   } else {
+  //     this.changeSelectedLocation(input)
+  //     this.changeToHourly()
+  //   }
+  // }
 
   changeSelectedLocation = (city, state) => {
     this.setState({
@@ -161,7 +163,7 @@ class App extends Component {
       />
     }
 
-    if (this.state.displayingHourlyForecast && this.state.isLoaded){
+    if (this.state.displayingHourlyForecast){
       display = <HourlyForecast 
         // hourlyWeatherData={hourlyWeatherData}
         displayingHourlyForecast = {this.state.displayingHourlyForecast}
@@ -170,7 +172,7 @@ class App extends Component {
       />
     } 
 
-    if (this.state.displayingDailyForecast && this.state.isLoaded){
+    if (this.state.displayingDailyForecast){
       display = <DailyForecast 
         // dailyWeatherData={dailyWeatherData}
         displayingDailyForecast ={this.state.displayingDailyForecast}
