@@ -23,7 +23,7 @@ class App extends Component {
       displayingDailyForecast: false,
       selectedLocation: '',
       verifiedLocation: true,
-      cityData: undefined,  
+      cityData: null,  
       hourlyData: {},
       dailyData: {},
       selectedCity: '',
@@ -75,10 +75,16 @@ class App extends Component {
     let url = `https://api.wunderground.com/api/${key}/conditions/hourly/forecast/10day/q/${state}/${city}.json`
     
     console.log(url)
-
+// debugger
     fetch(url)
       .then(data => data.json())
-      .then(data => console.log('data: ', data))
+      // .then(data => console.log('data: ', data))
+      .then(data => {
+        this.setState({
+          cityData: data
+        })
+      })
+      // .then(console.log('hi'))
       .catch(err => console.log(err))
 
    
