@@ -15,14 +15,15 @@ export default class Search extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    // this.props.checkInputLocation(this.state.location)
+
     this.props.changeSelectedLocation(this.state.selectedCity, this.state.selectedState)
+
     this.props.fetchWeather(this.state.selectedCity, this.state.selectedState);
-    this.props.changeToHourly()
+
+    // this.props.changeToHourly()
   }
 
   render() {
-    // console.log(this.props)
     return (
       <div className={this.props.selectedLocation ? 'header-search' : 'welcome-search'}>
         <p className={this.props.selectedLocation ? 'hide' : 'welcome-search'}>Enter your city or zipcode to get the weather.</p>

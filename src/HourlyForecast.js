@@ -3,6 +3,7 @@ import './HourlyForecast.css'
 import Card from './Card'
 
 export default function HourlyForecast(props) {
+        console.log(props)
   return(
       <div className='hourly-page-container'>
         <section className='hourly-card-container'>

@@ -24,10 +24,11 @@ class App extends Component {
       selectedLocation: '',
       verifiedLocation: true,
       cityData: null,  
-      hourlyData: {},
-      dailyData: {},
+      hourlyData: [],
+      dailyData: [],
       selectedCity: '',
-      selectedState: ''
+      selectedState: '',
+      isLoaded: false
     };
   };
 
@@ -67,9 +68,9 @@ class App extends Component {
     })
   }
 
-  componentDidMount(url) {
+  // componentDidMount(url) {
     //when we have local storage
-  }
+  // }
 
   fetchWeather = (city, state) => {
     let url = `https://api.wunderground.com/api/${key}/conditions/hourly/forecast/10day/q/${state}/${city}.json`
@@ -81,18 +82,20 @@ class App extends Component {
       // .then(data => console.log('data: ', data))
       .then(data => {
         this.setState({
-          cityData: data
+          cityData: data,
+          isLoaded: true,
+          displayingWelcome: false,
+          displayingHourlyForecast: true,
+          displayingDailyForecast: false
         })
       })
       // .then(console.log('hi'))
       .catch(err => console.log(err))
 
-   
-    // fetch(`https://api.wunderground.com/api/${key}/conditions/hourly/forecast/10day/q/CO/Denver.json`)
-    // this.componentDidMount(url)
-  } 
-    
-
+      // if(this.state.cityData){
+      //   this.changeToHourly()
+      // }
+  }  
   
   checkInputLocation = (input) => {
     if (data.current_observation.display_location.city !== input) {
@@ -115,15 +118,15 @@ class App extends Component {
     });
   }
 
-  changeToHourly = () => {
-    if ( this.state.cityData ){
-      this.setState({
-        displayingWelcome: false,
-        displayingHourlyForecast: true,
-        displayingDailyForecast: false
-      })
-    }
-  }
+  // changeToHourly = () => {
+  //   if ( this.state.cityData ){
+  //     this.setState({
+  //       displayingWelcome: false,
+  //       displayingHourlyForecast: true,
+  //       displayingDailyForecast: false
+  //     })
+  //   }
+  // }
 
   changeToDaily = () => {
     this.setState({
@@ -136,8 +139,20 @@ class App extends Component {
   render() {
     let display;
 
+    // if (!this.state.cityData){
+    //   console.log("no data")
+    //     display = <Welcome 
+    //     changeSelectedLocation={this.changeSelectedLocation}
+    //     changeToHourly={this.changeToHourly}
+    //     checkInputLocation={this.checkInputLocation}
+    //     fetchWeather={this.fetchWeather}
+    //   />
+    // } else {
+    //   this.changeToHourly()
+    // }
+
+
     if (this.state.displayingWelcome) {
-      console.log('test')
       display = <Welcome 
         changeSelectedLocation={this.changeSelectedLocation}
         changeToHourly={this.changeToHourly}
@@ -146,7 +161,7 @@ class App extends Component {
       />
     }
 
-    if (this.state.displayingHourlyForecast){
+    if (this.state.displayingHourlyForecast && this.state.isLoaded){
       display = <HourlyForecast 
         // hourlyWeatherData={hourlyWeatherData}
         displayingHourlyForecast = {this.state.displayingHourlyForecast}
@@ -155,7 +170,7 @@ class App extends Component {
       />
     } 
 
-    if (this.state.displayingDailyForecast){
+    if (this.state.displayingDailyForecast && this.state.isLoaded){
       display = <DailyForecast 
         // dailyWeatherData={dailyWeatherData}
         displayingDailyForecast ={this.state.displayingDailyForecast}
@@ -163,10 +178,10 @@ class App extends Component {
         dailyData = {this.state.dailyData}
       />
     }
-
+  
     return (
       <div className="App">
-        {!this.state.displayingWelcome && 
+        {this.state.isLoaded &&  
           <div>
             <Header 
               changeSelectedLocation={this.changeSelectedLocation}
