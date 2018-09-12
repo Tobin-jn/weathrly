@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow, mount } from 'enzyme';
 
-import App from './App';
+import Card from './Card';
 
-describe('App', () => {
+describe('Card', () => {
   
   it('should exist', () => {
-    const wrapper = shallow(<App />)
+    const wrapper = shallow(<Card />)
     expect(wrapper).toBeDefined()
   })
 })

@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow, mount } from 'enzyme';
 
-import App from './App';
+import Welcome from './Welcome';
 
-describe('App', () => {
+describe('Welcome', () => {
   
   it('should exist', () => {
-    const wrapper = shallow(<App />)
+    const wrapper = shallow(<Welcome />)
     expect(wrapper).toBeDefined()
   })
 })

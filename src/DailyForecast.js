@@ -10,7 +10,6 @@ export default function DailyForecast(props) {
         { props.dailyData.map((day, index) => {
           return (
             <Card 
-                // dailyWeatherData = {props.dailyWeatherData} 
               day={day} 
               key={index}
               displayingDailyForecast ={props.displayingDailyForecast} 
