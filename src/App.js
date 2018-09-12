@@ -91,16 +91,17 @@ class App extends Component {
           displayingDailyForecast: false,
 
         })
-        this.setLocalStorage();
         this.updateHourlyData();
         this.updateDailyData();
+        this.setLocalStorage();
       })
       // .then(console.log('hi'))
       .catch(err => console.log(err))
     }
 
   setLocalStorage = () => {
-    localStorage.setItem('cityData', JSON.stringify(this.state.cityData))
+    let storageArr = [this.state.cityData, this.state.hourlyData, this.state.dailyData]
+    localStorage.setItem('cityData', JSON.stringify(storageArr))
   }
 
   getFromLocalStorage() {
@@ -109,10 +110,15 @@ class App extends Component {
     if (cityData) {
 
       this.changeToHourly();
-      this.setState({ cityData: JSON.parse(cityData) })
+      let storageArr = JSON.parse(cityData)
+      this.setState({ 
+        cityData: storageArr[0],
+        hourlyData: storageArr[1],
+        dailyData: storageArr[2]
+      })
 
-      this.updateHourlyData();
-      this.updateDailyData();
+      // this.updateHourlyData();
+      // this.updateDailyData();
     }
   }
 
