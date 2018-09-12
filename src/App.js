@@ -114,8 +114,10 @@ class App extends Component {
       this.setState({ 
         cityData: storageArr[0],
         hourlyData: storageArr[1],
-        dailyData: storageArr[2]
+        dailyData: storageArr[2],
+        isLoaded: true
       })
+      // this.render()
 
       // this.updateHourlyData();
       // this.updateDailyData();
