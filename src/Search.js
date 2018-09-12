@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import './Search.css';
+import Trie from 'boilerplate';
+import { cities } from './api.js';
 
 export default class Search extends Component {
   constructor(props) {
@@ -9,31 +11,49 @@ export default class Search extends Component {
     this.state = {
       // selectedCity: '',
       // selectedState: '',
-      location: ''
+      location: '',
+      trie: null,
+      suggests: null
     }
   }
 
+
+  componentWillMount() {
+    let trie = new Trie();
+    // console.log(trie)
+
+    trie.populate(cities.data);
+
+    this.setState({trie: trie})
+
+    console.log(this.state.trie)
+  }
+
+//where is this invoked?
+//what is suggest called in completeMe
+  suggestCity = (string) => {
+    let suggests = this.state.trie.suggest(string).slice(0, 10);
+    this.setState({suggests: suggests})
+  }
 
   handleSubmit = (event) => {
     event.preventDefault();
 
     this.props.changeSelectedLocation(this.state.selectedCity, this.state.selectedState);
-
     // this.props.fetchWeather(this.state.selectedCity, this.state.selectedState);
     this.props.fetchWeather(this.state.location);
-
     // this.props.changeToHourly()
   }
 
   returnURLInput = (string) => {
     let location;
     if (parseInt(string)){
-      location = string;
+      location = string
     } else {
       let locationArray = string.split(' ');
-      location = `${locationArray[1]}/${locationArray[0].slice(0, -1)}`;
+      location = `${locationArray[1]}/${locationArray[0].slice(0, -1)}`
     }
-    return location;
+    return location
   }
 
   render() {
@@ -43,16 +63,25 @@ export default class Search extends Component {
         <form onSubmit={this.handleSubmit}>
           <input
             type = 'text'
+            list = 'data'
             placeholder = {this.props.selectedLocation ? 'Enter new city or zipcode' : ''}
             onChange = {(event) => {
-
-                let locationValue = this.returnURLInput(event.target.value);
+              let locationValue = this.returnURLInput(event.target.value);
+              this.suggestCity(event.target.value);
               this.setState({
                 location: locationValue
               })
             }}
           />
-          <button>{this.props.isLoaded ? <img src='./icons/search.svg' /> : 'Get Weather'}</button>
+
+          <datalist id='data'>
+          { this.state.suggests &&
+            this.state.suggests.map((location, index) =>
+            <option value={location} key={index}/>
+            )}
+          </datalist>
+
+        <button>{this.props.isLoaded ? <img src='./icons/search.svg' /> : 'Get Weather'}</button>
         </form>
       </div>
     );
