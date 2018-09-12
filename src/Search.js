@@ -48,7 +48,7 @@ export default class Search extends Component {
 
                 let locationValue = this.returnURLInput(event.target.value);
               this.setState({
-                location: locationValue;
+                location: locationValue
               })
             }}
           />
