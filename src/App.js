@@ -8,6 +8,7 @@ import CurrentForecast from './CurrentForecast';
 import HourlyForecast from './HourlyForecast';
 import DailyForecast from './DailyForecast';
 import { config } from './config.js';
+import Trie from 'boilerplate';
 import './App.css';
 // import { data, cities } from './api';
 
