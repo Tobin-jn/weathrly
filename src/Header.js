@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Search from './Search';
-import './Header.css'
+import './Header.css';
 
 export default class Header extends Component {
 

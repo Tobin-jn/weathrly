@@ -4,10 +4,10 @@ import Welcome from './Welcome';
 import Header from './Header';
 import Navigation from './Navigation';
 import Footer from './Footer';
-import CurrentForecast from './CurrentForecast'
-import HourlyForecast from './HourlyForecast'
-import DailyForecast from './DailyForecast'
-import { config } from './config.js'
+import CurrentForecast from './CurrentForecast';
+import HourlyForecast from './HourlyForecast';
+import DailyForecast from './DailyForecast';
+import { config } from './config.js';
 import './App.css';
 // import { data, cities } from './api';
 
@@ -28,9 +28,9 @@ class App extends Component {
       dailyData: [],
       selectedCity: '',
       selectedState: '',
-      isLoaded: false
+      isLoaded: false,
     };
-  };
+  }
 
   updateHourlyData = () => {
     const dataPathHourly = Object.values(this.state.cityData)[3];
@@ -48,10 +48,10 @@ class App extends Component {
     this.setState({
       hourlyData: hourlyWeatherData
     }) 
-  }
+  };
   
   updateDailyData = () => {
-    const dataPathDaily = Object.values(this.state.cityData)[2].simpleforecast.forecastday
+    const dataPathDaily = Object.values(this.state.cityData)[2].simpleforecast.forecastday;
     const weekday = dataPathDaily.map( entry => entry.date.weekday );
     const dailyCondition = dataPathDaily.map( entry => entry.conditions );
     const dailyHigh = dataPathDaily.map( entry => entry.high.fahrenheit );
@@ -69,13 +69,14 @@ class App extends Component {
     })
   }
 
-  // componentDidMount(url) {
-    //when we have local storage
-  // }
+  
+  componentDidMount() {
+    this.getFromLocalStorage()
+  }
+  
 
   fetchWeather = (location) => {
     let url = `https://api.wunderground.com/api/${key}/conditions/hourly/forecast10day/q/${location}.json`
-    console.log(url)
     
     fetch(url)
       .then(data => data.json())
@@ -85,14 +86,40 @@ class App extends Component {
           isLoaded: true,
           displayingWelcome: false,
           displayingHourlyForecast: true,
-          displayingDailyForecast: false
+          displayingDailyForecast: false,
+
         })
         this.updateHourlyData();
         this.updateDailyData();
+        this.setLocalStorage();
       })
-      // .then(console.log('hi'))
       .catch(err => console.log(err))
     }
+
+  setLocalStorage = () => {
+    let storageArr = [this.state.cityData, this.state.hourlyData, this.state.dailyData]
+    localStorage.setItem('cityData', JSON.stringify(storageArr))
+  }
+
+  getFromLocalStorage() {
+    const cityData = localStorage.getItem('cityData')
+
+    if (cityData) {
+
+      this.changeToHourly();
+      let storageArr = JSON.parse(cityData)
+      this.setState({ 
+        cityData: storageArr[0],
+        hourlyData: storageArr[1],
+        dailyData: storageArr[2],
+        isLoaded: true
+      })
+      // this.render()
+
+      // this.updateHourlyData();
+      // this.updateDailyData();
+    }
+  }
 
   changeSelectedLocation = (city, state) => {
     this.setState({
