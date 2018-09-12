@@ -1,28 +1,28 @@
 import React from 'react';
-import './CurrentForecast.css'
+import './CurrentForecast.css';
 // import { data } from './api';
-import { weatherConditions } from'./conditions'
+import { weatherConditions } from './conditions';
 
 export default function CurrentForecast(props) {
-  let summary = Object.values(props.cityData)[2].txt_forecast.forecastday[0].fcttext
-  let simpleforecastPath = Object.values(props.cityData)[2].simpleforecast.forecastday[0]
+  let summary = Object.values(props.cityData)[2].txt_forecast.forecastday[0].fcttext;
+  let simpleforecastPath = Object.values(props.cityData)[2].simpleforecast.forecastday[0];
   return (
     <div>
       <div className ='current-container'>
         <p className='current-city'>{props.selectedCity}, <span className='to-upper-case'>{props.selectedState}</span></p>
-      <div className='current-subcontainer'>
-        <div className='current-info'>
-          <p className='current-date'>{simpleforecastPath.date.monthname} {simpleforecastPath.date.day}, {simpleforecastPath.date.year}</p>
-          <div className='current-temp-data'>
-            <p className='current-temp'>{parseInt(Object.values(props.cityData)[1].temp_f)}&deg;</p>
+        <div className='current-subcontainer'>
+          <div className='current-info'>
+            <p className='current-date'>{simpleforecastPath.date.monthname} {simpleforecastPath.date.day}, {simpleforecastPath.date.year}</p>
+            <div className='current-temp-data'>
+              <p className='current-temp'>{parseInt(Object.values(props.cityData)[1].temp_f)}&deg;</p>
               <div className ='current-high-low'>
-            <p className='current-high-temp'>
-            High: {simpleforecastPath.high.fahrenheit}&deg;</p>
-            <p className='current-low-temp'>
-            Low: {simpleforecastPath.low.fahrenheit}&deg;</p>
-               </div>
-           </div>
-        </div>
+                <p className='current-high-temp'>
+                High: {simpleforecastPath.high.fahrenheit}&deg;</p>
+                <p className='current-low-temp'>
+                Low: {simpleforecastPath.low.fahrenheit}&deg;</p>
+              </div>
+            </div>
+          </div>
         <div className='current-icon'>
           <img 
             className='current-condition-icon'

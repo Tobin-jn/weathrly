@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './Search.css'
+import './Search.css';
 
 export default class Search extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ export default class Search extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    this.props.changeSelectedLocation(this.state.selectedCity, this.state.selectedState)
+    this.props.changeSelectedLocation(this.state.selectedCity, this.state.selectedState);
 
     // this.props.fetchWeather(this.state.selectedCity, this.state.selectedState);
     this.props.fetchWeather(this.state.location);
@@ -28,12 +28,12 @@ export default class Search extends Component {
   returnURLInput = (string) => {
     let location;
     if (parseInt(string)){
-      location = string
+      location = string;
     } else {
       let locationArray = string.split(' ');
-      location = `${locationArray[1]}/${locationArray[0].slice(0, -1)}`
+      location = `${locationArray[1]}/${locationArray[0].slice(0, -1)}`;
     }
-    return location
+    return location;
   }
 
   render() {
@@ -46,13 +46,13 @@ export default class Search extends Component {
             placeholder = {this.props.selectedLocation ? 'Enter new city or zipcode' : ''}
             onChange = {(event) => {
 
-                let locationValue = this.returnURLInput(event.target.value)
+                let locationValue = this.returnURLInput(event.target.value);
               this.setState({
-                location: locationValue
+                location: locationValue;
               })
             }}
           />
-        <button>{this.props.isLoaded ? <img src='./icons/search.svg' /> : 'Get Weather'}</button>
+          <button>{this.props.isLoaded ? <img src='./icons/search.svg' /> : 'Get Weather'}</button>
         </form>
       </div>
     );
