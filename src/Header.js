@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Search from './Search';
 import './Header.css';
-import Trie from './node-modules/boilerplate';
+import Trie from 'boilerplate';
 
 export default class Header extends Component {
 

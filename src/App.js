@@ -9,7 +9,7 @@ import HourlyForecast from './HourlyForecast';
 import DailyForecast from './DailyForecast';
 import { config } from './config.js';
 import './App.css';
-import Trie from './node-modules/boilerplate';
+import Trie from 'boilerplate';
 // import { data, cities } from './api';
 
 const key = config.weatherKey;

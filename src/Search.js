@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import './Search.css';
-import Trie from './node-modules/boilerplate';
+import Trie from 'boilerplate';
 import { cities } from './api.js';
 
 export default class Search extends Component {
@@ -19,10 +19,12 @@ export default class Search extends Component {
 
   componentWillMount() {
     let trie = new Trie();
-    console.log(trie)
+    // console.log(trie)
 
-    trie.populate(cities.data)
-    this.setState({trie: trie})
+    let populatedTrie = trie.populate(cities.data)
+
+    this.setState({trie: populatedTrie})
+
     console.log(this.state.trie)
   }
 

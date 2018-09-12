@@ -2,7 +2,7 @@ import React from 'react';
 
 import Search from './Search';
 import './Welcome.css';
-import Trie from './node-modules/boilerplate';
+import Trie from 'boilerplate';
 
 export default function Welcome(props) {
   return(
