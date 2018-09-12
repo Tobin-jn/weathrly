@@ -68,13 +68,11 @@ class App extends Component {
       dailyData: dailyWeatherData
     })
   }
-
   
   componentDidMount() {
     this.getFromLocalStorage()
   }
   
-
   fetchWeather = (location) => {
     let url = `https://api.wunderground.com/api/${key}/conditions/hourly/forecast10day/q/${location}.json`
     

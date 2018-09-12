@@ -1,15 +1,15 @@
 import React from 'react';
 import './CurrentForecast.css';
-// import { data } from './api';
 import { weatherConditions } from './conditions';
 
 export default function CurrentForecast(props) {
   let summary = Object.values(props.cityData)[2].txt_forecast.forecastday[0].fcttext;
   let simpleforecastPath = Object.values(props.cityData)[2].simpleforecast.forecastday[0];
+  let currentCity = props.cityData.current_observation.display_location.full;
   return (
     <div>
       <div className ='current-container'>
-        <p className='current-city'>{props.selectedCity}, <span className='to-upper-case'>{props.selectedState}</span></p>
+        <p className='current-city'>{currentCity} <span className='to-upper-case'>{props.selectedState}</span></p>
         <div className='current-subcontainer'>
           <div className='current-info'>
             <p className='current-date'>{simpleforecastPath.date.monthname} {simpleforecastPath.date.day}, {simpleforecastPath.date.year}</p>
