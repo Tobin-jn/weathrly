@@ -4,11 +4,12 @@ import Welcome from './Welcome';
 import Header from './Header';
 import Navigation from './Navigation';
 import Footer from './Footer';
-import CurrentForecast from './CurrentForecast'
-import HourlyForecast from './HourlyForecast'
-import DailyForecast from './DailyForecast'
-import { config } from './config.js'
+import CurrentForecast from './CurrentForecast';
+import HourlyForecast from './HourlyForecast';
+import DailyForecast from './DailyForecast';
+import { config } from './config.js';
 import './App.css';
+import Trie from './node-modules/boilerplate';
 // import { data, cities } from './api';
 
 const key = config.weatherKey;

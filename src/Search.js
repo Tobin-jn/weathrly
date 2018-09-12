@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-import './Search.css'
+import './Search.css';
+import Trie from './node-modules/boilerplate';
+import { cities } from './api.js';
 
 export default class Search extends Component {
   constructor(props) {
@@ -9,10 +11,25 @@ export default class Search extends Component {
     this.state = {
       // selectedCity: '',
       // selectedState: '',
-      location: ''
+      location: '',
+      trie: null,
+      suggests: null
     }
   }
 
+  componentWillMount() {
+    let trie = new Trie();
+    console.log(trie)
+
+    trie.populate(cities.data)
+    this.setState({trie: trie})
+    console.log(this.state.trie)
+  }
+
+  suggestCity = (string) => {
+    let suggests = this.state.trie.suggest(string).slice(0, 10);
+    this.setState({suggests: suggests})
+  }
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -52,6 +69,15 @@ export default class Search extends Component {
               })
             }}
           />
+
+          <datalist id='data'>
+          {
+            this.state.suggests &&
+            this.state.suggests.map((location, index) =>
+            <option value={location} key={index}/>
+            )}
+          </datalist>
+
         <button>{this.props.isLoaded ? <img src='./icons/search.svg' /> : 'Get Weather'}</button>
         </form>
       </div>
