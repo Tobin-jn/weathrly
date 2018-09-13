@@ -5,8 +5,8 @@ import Trie from 'boilerplate';
 import { cities } from './api.js';
 
 export default class Search extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       location: '',
@@ -29,12 +29,7 @@ export default class Search extends Component {
   }
 
   handleSubmit = (event) => {
-    let city = this.state.selectedCity;
-    let state = this.state.selectedState;
-
     event.preventDefault();
-
-    this.props.changeSelectedLocation(city, state);
     this.props.fetchWeather(this.state.location);
   }
 
@@ -62,7 +57,7 @@ export default class Search extends Component {
           <input
             type = 'text'
             list = 'data'
-            placeholder = {this.props.selectedLocation 
+            placeholder = {this.props.isLoaded 
               ? 'Enter new city or zipcode' : ''}
             onChange = {(event) => {
               let locationValue = this.returnURLInput(event.target.value);

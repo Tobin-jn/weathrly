@@ -22,10 +22,59 @@ class App extends Component {
       cityData: null,  
       hourlyData: [],
       dailyData: [],
-      selectedCity: '',
-      selectedState: '',
       isLoaded: false,
     };
+  }
+
+  fetchWeather = (location) => {
+    let url =
+      `https://api.wunderground.com/api/${key}/conditions/hourly/forecast10day/q/${location}.json`;
+    
+    fetch(url)
+      .then(data => data.json())
+      .then(data => {
+        this.setState({
+          cityData: data,
+          isLoaded: true,
+          displayingWelcome: false,
+          displayingHourlyForecast: true,
+          displayingDailyForecast: false,
+        });
+        this.updateHourlyData();
+        this.updateDailyData();
+        this.setLocalStorage();
+      })
+      .catch(err => console.log(err));
+  }
+
+  componentDidMount() {
+    this.getFromLocalStorage();
+  }
+  
+  setLocalStorage = () => {
+    let storageArr = [
+      this.state.cityData, 
+      this.state.hourlyData, 
+      this.state.dailyData
+    ];
+
+    localStorage.setItem('cityData', JSON.stringify(storageArr));
+  }
+
+  getFromLocalStorage() {
+    const cityData = localStorage.getItem('cityData');
+
+    if (cityData) {
+      let storageArr = JSON.parse(cityData);
+
+      this.changeToHourly();
+      this.setState({ 
+        cityData: storageArr[0],
+        hourlyData: storageArr[1],
+        dailyData: storageArr[2],
+        isLoaded: true
+      });
+    }
   }
 
   updateHourlyData = () => {
@@ -75,64 +124,6 @@ class App extends Component {
       dailyData: dailyWeatherData
     });
   }
-  
-  componentDidMount() {
-    this.getFromLocalStorage();
-  }
-  
-  fetchWeather = (location) => {
-    let url =
-      `https://api.wunderground.com/api/${key}/conditions/hourly/forecast10day/q/${location}.json`;
-    
-    fetch(url)
-      .then(data => data.json())
-      .then(data => {
-        this.setState({
-          cityData: data,
-          isLoaded: true,
-          displayingWelcome: false,
-          displayingHourlyForecast: true,
-          displayingDailyForecast: false,
-        });
-        this.updateHourlyData();
-        this.updateDailyData();
-        this.setLocalStorage();
-      })
-      .catch(err => console.log(err));
-  }
-
-  setLocalStorage = () => {
-    let storageArr = [
-      this.state.cityData, 
-      this.state.hourlyData, 
-      this.state.dailyData
-    ];
-
-    localStorage.setItem('cityData', JSON.stringify(storageArr));
-  }
-
-  getFromLocalStorage() {
-    const cityData = localStorage.getItem('cityData');
-
-    if (cityData) {
-      let storageArr = JSON.parse(cityData);
-
-      this.changeToHourly();
-      this.setState({ 
-        cityData: storageArr[0],
-        hourlyData: storageArr[1],
-        dailyData: storageArr[2],
-        isLoaded: true
-      });
-    }
-  }
-
-  changeSelectedLocation = (city, state) => {
-    this.setState({
-      selectedCity: city,
-      selectedState: state
-    });
-  }
 
   changeToHourly = () => {
     this.setState({
@@ -155,9 +146,7 @@ class App extends Component {
 
     if (this.state.displayingWelcome) {
       display = <Welcome 
-        changeSelectedLocation={this.changeSelectedLocation}
         changeToHourly={this.changeToHourly}
-        checkInputLocation={this.checkInputLocation}
         fetchWeather={this.fetchWeather}
         isLoaded={this.props.isLoaded}
       />;
@@ -184,17 +173,12 @@ class App extends Component {
         {this.state.isLoaded &&  
           <div>
             <Header 
-              changeSelectedLocation={this.changeSelectedLocation}
               changeToHourly={this.changeToHourly}
               fetchWeather={this.fetchWeather}
               isLoaded={this.state.isLoaded}
             />
             <CurrentForecast 
-              selectedLocation={`${this.state.selectedCity}, 
-                ${this.state.selectedState}`}
               cityData = {this.state.cityData}
-              selectedCity={this.state.selectedCity}
-              selectedState={this.state.selectedState}
             />
             <Navigation
               displayingHourlyForecast={this.state.displayingHourlyForecast}
