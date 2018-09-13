@@ -66,21 +66,22 @@ export default class Search extends Component {
               ? 'Enter new city or zipcode' : ''}
             onChange = {(event) => {
               let locationValue = this.returnURLInput(event.target.value);
+              
               this.suggestCity(event.target.value);
               this.setState({
                 location: locationValue
-              })
+              });
             }}
           />
           <datalist id='data'>{
             this.state.suggests &&
             this.state.suggests.map((location, index) =>
-            <option value={location} key={index}/>
+          <option value={location} key={index}/>
             )}
           </datalist>
 
-        <button>{this.props.isLoaded 
-          ? <img src='./icons/search.svg' /> : 'Get Weather'}</button>
+          <button>{this.props.isLoaded 
+            ? <img src='./icons/search.svg' /> : 'Get Weather'}</button>
         </form>
       </div>
     );

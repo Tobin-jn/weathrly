@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import HourlyForecast from './HourlyForecast';
-import Card from './Card';
 
 describe('HourlyForecast', () => {
   let wrapper;

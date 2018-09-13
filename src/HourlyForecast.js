@@ -15,9 +15,9 @@ export default function HourlyForecast(props) {
               displayingHourlyForecast = {props.displayingHourlyForecast}
               cityData = {props.cityData}
               hourlyData = {props.hourlyData}
-              />
-            );
-          })
+            />
+          );
+        })
         }
       </section>
     </div>

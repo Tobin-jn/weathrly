@@ -28,6 +28,6 @@ describe('DailyForecast', () => {
 
     wrapper = shallow(<DailyForecast dailyData={dailyData}/>);
 
-    expect(wrapper.find('Card').length).toEqual(1)
+    expect(wrapper.find('Card').length).toEqual(1);
   });
 });

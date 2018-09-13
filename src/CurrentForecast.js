@@ -32,16 +32,16 @@ export default function CurrentForecast(props) {
               </div>
             </div>
           </div>
-        <div className='current-icon'>
-          <img 
-            className='current-condition-icon'
-            alt= {Object.values(props.cityData)[1].weather}
-            src= {weatherConditions[Object.values(props.cityData)[1].weather].icon}
-          />
-          <p className="current-condition">{simpleforecastPath.conditions}</p>
+          <div className='current-icon'>
+            <img 
+              className='current-condition-icon'
+              alt= {Object.values(props.cityData)[1].weather}
+              src= {weatherConditions[Object.values(props.cityData)[1].weather].icon}
+            />
+            <p className="current-condition">{simpleforecastPath.conditions}</p>
+          </div>
         </div>
-      </div>
-      <p className='current-condition-summary'>{summary}</p>
+        <p className='current-condition-summary'>{summary}</p>
       </div>  
     </div>
   );
