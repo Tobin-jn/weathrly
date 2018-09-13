@@ -144,18 +144,6 @@ describe('App', () => {
     )
   })
 
-  // it('should fetch weather data and set state', () => {
-  //   wrapper.instance().fetchWeather();
-
-  //   expect(wrapper.state()).toEqual({
-  //     cityData: promise,
-  //     isLoaded: true,
-  //     displayingWelcome: false,
-  //     displayingHourlyForecast: true,
-  //     displayingDailyForecast: false,
-  //   })
-  // })
-
   it('should set local storage with data from state', () => {
     wrapper.setState({
       cityData: {city: 'data'},
@@ -192,6 +180,42 @@ describe('App', () => {
     expect(wrapper.state('dailyData')).toEqual(
       [1, 2, 3]
     )
+  })
+
+  it('should change selected location in state', () => {
+    wrapper.setState({
+      selectedCity: 'city',
+      selectedState: 'state'
+    })
+    wrapper.instance().changeSelectedLocation('Denver', 'CO');
+    expect(wrapper.state('selectedCity')).toEqual('Denver');
+    expect(wrapper.state('selectedState')).toEqual('CO');
+  })
+
+  it('should change state to hourly settings', () => {
+    wrapper.setState({
+      displayingWelcome: true,
+      displayingHourlyForecast: false,
+      displayingDailyForecast: true
+    })
+    wrapper.instance().changeToHourly();
+
+    expect(wrapper.state('displayingWelcome')).toEqual(false);
+    expect(wrapper.state('displayingHourlyForecast')).toEqual(true);
+    expect(wrapper.state('displayingDailyForecast')).toEqual(false);
+  })
+
+  it('should change state to daily settings', () => {
+    wrapper.setState({
+      displayingWelcome: true,
+      displayingHourlyForecast: true,
+      displayingDailyForecast: false
+    })
+    wrapper.instance().changeToDaily();
+
+    expect(wrapper.state('displayingWelcome')).toEqual(false);
+    expect(wrapper.state('displayingHourlyForecast')).toEqual(false);
+    expect(wrapper.state('displayingDailyForecast')).toEqual(true);
   })
 
 
