@@ -10,15 +10,4 @@ describe('Search', () => {
     
     expect(wrapper).toBeDefined();
   });
-
-  // it('should instantiate with default state properties', () => {
-  //   const wrapper = shallow(<Search />)
-    
-  //   expect(wrapper.state()).toEqual({
-  //     location: '',
-  //     trie: null,
-  //     suggests: null
-  //   })
-  // })
-
 });
