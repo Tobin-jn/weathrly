@@ -193,4 +193,4 @@ export const weatherConditions = {
     condition: 'Scattered Clouds',
     icon: './icons/partlycloudy.png'
   }
-}
+};
