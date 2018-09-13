@@ -50,7 +50,7 @@ class App extends Component {
   componentDidMount() {
     this.getFromLocalStorage();
   }
-  
+
   setLocalStorage = () => {
     let storageArr = [
       this.state.cityData, 
