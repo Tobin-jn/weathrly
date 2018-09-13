@@ -9,8 +9,6 @@ export default class Search extends Component {
     super(props);
 
     this.state = {
-      // selectedCity: '',
-      // selectedState: '',
       location: '',
       trie: null,
       suggests: null
@@ -20,17 +18,11 @@ export default class Search extends Component {
 
   componentWillMount() {
     let trie = new Trie();
-    // console.log(trie)
 
     trie.populate(cities.data);
-
     this.setState({trie: trie})
-
-    console.log(this.state.trie)
   }
 
-//where is this invoked?
-//what is suggest called in completeMe
   suggestCity = (string) => {
     let suggests = this.state.trie.suggest(string).slice(0, 10);
     this.setState({suggests: suggests})
@@ -40,9 +32,7 @@ export default class Search extends Component {
     event.preventDefault();
 
     this.props.changeSelectedLocation(this.state.selectedCity, this.state.selectedState);
-    // this.props.fetchWeather(this.state.selectedCity, this.state.selectedState);
     this.props.fetchWeather(this.state.location);
-    // this.props.changeToHourly()
   }
 
   returnURLInput = (string) => {

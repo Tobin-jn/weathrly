@@ -35,10 +35,14 @@ class App extends Component {
 
   updateHourlyData = () => {
     const dataPathHourly = Object.values(this.state.cityData)[3];
-    const hourCondition = dataPathHourly.map( hour => hour.condition );
-    const hour = dataPathHourly.map( hour => hour.FCTTIME.civil );
-    const hourlyTemp = dataPathHourly.map( hour => parseInt(hour.temp.english) );
-    const hourlyWeatherData = hourlyTemp.map((element, index) => {
+    const hourCondition = dataPathHourly
+    .map( hour => hour.condition );
+    const hour = dataPathHourly
+    .map( hour => hour.FCTTIME.civil );
+    const hourlyTemp = dataPathHourly
+    .map( hour => parseInt(hour.temp.english) );
+    const hourlyWeatherData = hourlyTemp
+    .map((element, index) => {
       return { 
         hour: hour[index], 
         hourCondition: hourCondition[index], 
@@ -113,10 +117,6 @@ class App extends Component {
         dailyData: storageArr[2],
         isLoaded: true
       })
-      // this.render()
-
-      // this.updateHourlyData();
-      // this.updateDailyData();
     }
   }
 
@@ -158,7 +158,6 @@ class App extends Component {
 
     if (this.state.displayingHourlyForecast){
       display = <HourlyForecast 
-        // hourlyWeatherData={hourlyWeatherData}
         displayingHourlyForecast = {this.state.displayingHourlyForecast}
         cityData = {this.state.cityData}
         hourlyData = {this.state.hourlyData}
@@ -167,7 +166,6 @@ class App extends Component {
 
     if (this.state.displayingDailyForecast){
       display = <DailyForecast 
-        // dailyWeatherData={dailyWeatherData}
         displayingDailyForecast ={this.state.displayingDailyForecast}
         cityData = {this.state.cityData}
         dailyData = {this.state.dailyData}

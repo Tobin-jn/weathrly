@@ -3,6 +3,17 @@ import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
 
+// global.fetch = () => {
+//   const promise = {
+//     then() {
+//       return promise;
+//     },
+//     catch() {}
+//   }
+
+//   return promise
+// }
+
 class LocalStorage {
   constructor() {
     this.store = {}
