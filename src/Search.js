@@ -64,8 +64,8 @@ export default class Search extends Component {
             }}
           />
 
-          <datalist id='data'>
-          { this.state.suggests &&
+          <datalist id='data'>{
+            this.state.suggests &&
             this.state.suggests.map((location, index) =>
             <option value={location} key={index}/>
             )}
@@ -77,3 +77,4 @@ export default class Search extends Component {
     );
   }
 }
+ // { this.state.suggests &&
