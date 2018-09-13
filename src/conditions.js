@@ -69,6 +69,11 @@ export const weatherConditions = {
     icon: './icons/thunderstorms.png'
   },
 
+  'Thunderstorm': {
+    condition: 'Thunderstorms',
+    icon: './icons/thunderstorms.png'
+  },
+
   'Thunderstorms': {
     condition: 'Thunderstorms',
     icon: './icons/thunderstorms.png'
