@@ -1,13 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { shallow, mount } from 'enzyme';
 
 import Navigation from './Navigation';
+import { shallow } from 'enzyme';
 
 describe('Navigation', () => {
   
   it('should exist', () => {
-    const wrapper = shallow(<Navigation />)
-    expect(wrapper).toBeDefined()
-  })
-})
+    const wrapper = shallow(<Navigation />);
+    
+    expect(wrapper).toBeDefined();
+  });
+});

@@ -15,9 +15,9 @@ export default function DailyForecast(props) {
               displayingDailyForecast ={props.displayingDailyForecast} 
               cityData = {props.cityData}
               dailyData = {props.dailyData}
-              />
-            )
-          })
+            />
+          );
+        })
         }
       </section>
     </div>

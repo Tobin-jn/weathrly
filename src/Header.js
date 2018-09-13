@@ -8,7 +8,7 @@ export default class Header extends Component {
 
   render() {
 
-    return(
+    return (
       <header className='header-container'>
         <h1 className='header-title'>Weathrly</h1>
         <Search 

@@ -174,11 +174,6 @@ export const weatherConditions = {
     icon: './icons/clear.png'
   },
   
-  'Thunderstorms': {
-    condition: 'Thunderstorms',
-    icon: './icons/thunderstorms.png'
-  },
-  
   'Unknown': {
     condition: 'unknown',
     icon: './icons/clear.png'
@@ -193,4 +188,4 @@ export const weatherConditions = {
     condition: 'Scattered Clouds',
     icon: './icons/partlycloudy.png'
   }
-}
+};

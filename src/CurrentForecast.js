@@ -3,18 +3,27 @@ import './CurrentForecast.css';
 import { weatherConditions } from './conditions';
 
 export default function CurrentForecast(props) {
-  let summary = Object.values(props.cityData)[2].txt_forecast.forecastday[0].fcttext;
-  let simpleforecastPath = Object.values(props.cityData)[2].simpleforecast.forecastday[0];
+  let summary = Object.values(props.cityData)[2]
+    .txt_forecast.forecastday[0].fcttext;
+  let simpleforecastPath = Object.values(props.cityData)[2]
+    .simpleforecast.forecastday[0];
   let currentCity = props.cityData.current_observation.display_location.full;
+  let datePath = simpleforecastPath.date;
+  let tempPath = Object.values(props.cityData)[1].temp_f;
+  
   return (
     <div>
       <div className ='current-container'>
-        <p className='current-city'>{currentCity} <span className='to-upper-case'>{props.selectedState}</span></p>
+        <p className='current-city'>{currentCity} 
+          <span className='to-upper-case'>{props.selectedState}</span>
+        </p>
         <div className='current-subcontainer'>
           <div className='current-info'>
-            <p className='current-date'>{simpleforecastPath.date.monthname} {simpleforecastPath.date.day}, {simpleforecastPath.date.year}</p>
+            <p className='current-date'>
+              {datePath.monthname} {datePath.day}, {datePath.year}
+            </p>
             <div className='current-temp-data'>
-              <p className='current-temp'>{parseInt(Object.values(props.cityData)[1].temp_f)}&deg;</p>
+              <p className='current-temp'>{parseInt(tempPath, 10)}&deg;</p>
               <div className ='current-high-low'>
                 <p className='current-high-temp'>
                 High: {simpleforecastPath.high.fahrenheit}&deg;</p>
@@ -23,16 +32,16 @@ export default function CurrentForecast(props) {
               </div>
             </div>
           </div>
-        <div className='current-icon'>
-          <img 
-            className='current-condition-icon'
-            alt= {Object.values(props.cityData)[1].weather}
-            src= {weatherConditions[Object.values(props.cityData)[1].weather].icon}
-          />
-          <p className="current-condition">{simpleforecastPath.conditions}</p>
+          <div className='current-icon'>
+            <img 
+              className='current-condition-icon'
+              alt= {Object.values(props.cityData)[1].weather}
+              src= {weatherConditions[Object.values(props.cityData)[1].weather].icon}
+            />
+            <p className="current-condition">{simpleforecastPath.conditions}</p>
+          </div>
         </div>
-      </div>
-      <p className='current-condition-summary'>{summary}</p>
+        <p className='current-condition-summary'>{summary}</p>
       </div>  
     </div>
   );
