@@ -15,7 +15,6 @@ export default class Search extends Component {
     }
   }
 
-
   componentWillMount() {
     let trie = new Trie();
 
@@ -77,4 +76,3 @@ export default class Search extends Component {
     );
   }
 }
- // { this.state.suggests &&
