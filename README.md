@@ -148,3 +148,8 @@ Use Sass / SCSS to style your projects
 2 - The developer makes large commits covering multiple features that make it difficult for the evaluator to determine the evolution of the application.
 
 1 - The developer committed the code to version control in only a few commits. The evaluator cannot determine the evolution of the application.
+
+![img_2085](https://user-images.githubusercontent.com/36767936/45490319-04152380-b724-11e8-813d-4cc618f6ad13.jpg)
+![img_2086](https://user-images.githubusercontent.com/36767936/45490323-08414100-b724-11e8-9ced-8ca1d27d0aea.jpg)
+![img_2087](https://user-images.githubusercontent.com/36767936/45490334-0bd4c800-b724-11e8-8079-b773ddff39c3.jpg)
+![img_2088](https://user-images.githubusercontent.com/36767936/45490337-0d05f500-b724-11e8-8aec-e9974e0e9d43.jpg)
