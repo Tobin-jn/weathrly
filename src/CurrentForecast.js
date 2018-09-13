@@ -9,16 +9,21 @@ export default function CurrentForecast(props) {
     .simpleforecast.forecastday[0];
   let currentCity = props.cityData.current_observation.display_location.full;
   let datePath = simpleforecastPath.date;
+  let tempPath = Object.values(props.cityData)[1].temp_f;
   
   return (
     <div>
       <div className ='current-container'>
-        <p className='current-city'>{currentCity} <span className='to-upper-case'>{props.selectedState}</span></p>
+        <p className='current-city'>{currentCity} 
+          <span className='to-upper-case'>{props.selectedState}</span>
+        </p>
         <div className='current-subcontainer'>
           <div className='current-info'>
-            <p className='current-date'>{datePath.monthname} {datePath.day}, {datePath.year}</p>
+            <p className='current-date'>
+              {datePath.monthname} {datePath.day}, {datePath.year}
+            </p>
             <div className='current-temp-data'>
-              <p className='current-temp'>{parseInt(Object.values(props.cityData)[1].temp_f)}&deg;</p>
+              <p className='current-temp'>{parseInt(tempPath)}&deg;</p>
               <div className ='current-high-low'>
                 <p className='current-high-temp'>
                 High: {simpleforecastPath.high.fahrenheit}&deg;</p>

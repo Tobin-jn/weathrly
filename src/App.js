@@ -98,8 +98,8 @@ class App extends Component {
         this.updateDailyData();
         this.setLocalStorage();
       })
-      .catch(err => console.log(err))
-    }
+      .catch(err => console.log(err));
+  }
 
   setLocalStorage = () => {
     let storageArr = [
@@ -160,24 +160,24 @@ class App extends Component {
         checkInputLocation={this.checkInputLocation}
         fetchWeather={this.fetchWeather}
         isLoaded={this.props.isLoaded}
-      />
-    };
+      />;
+    }
 
     if (this.state.displayingHourlyForecast) {
       display = <HourlyForecast 
         displayingHourlyForecast = {this.state.displayingHourlyForecast}
         cityData = {this.state.cityData}
         hourlyData = {this.state.hourlyData}
-      />
-    };
+      />;
+    }
 
     if (this.state.displayingDailyForecast) {
       display = <DailyForecast 
         displayingDailyForecast ={this.state.displayingDailyForecast}
         cityData = {this.state.cityData}
         dailyData = {this.state.dailyData}
-      />
-    };
+      />;
+    }
   
     return (
       <div className="App">

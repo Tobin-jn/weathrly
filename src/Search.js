@@ -12,19 +12,20 @@ export default class Search extends Component {
       location: '',
       trie: null,
       suggests: null
-    }
+    };
   }
 
   componentWillMount() {
     let trie = new Trie();
 
     trie.populate(cities.data);
-    this.setState({trie: trie})
+    this.setState({trie: trie});
   }
 
   suggestCity = (string) => {
     let suggests = this.state.trie.suggest(string).slice(0, 10);
-    this.setState({suggests: suggests})
+    
+    this.setState({suggests: suggests});
   }
 
   handleSubmit = (event) => {
@@ -36,19 +37,23 @@ export default class Search extends Component {
 
   returnURLInput = (string) => {
     let location;
-    if (parseInt(string)){
-      location = string
+
+    if (parseInt(string)) {
+      location = string;
     } else {
       let locationArray = string.split(' ');
-      location = `${locationArray[1]}/${locationArray[0].slice(0, -1)}`
+
+      location = `${locationArray[1]}/${locationArray[0].slice(0, -1)}`;
     }
-    return location
+    return location;
   }
 
   render() {
     return (
       <div className={this.props.isLoaded ? 'header-search' : 'welcome-search'}>
-        <p className={this.props.isLoaded ? 'hide' : 'welcome-search'}>Enter your city or zipcode to get the weather.</p>
+        <p className={this.props.isLoaded ? 'hide' : 'welcome-search'}>
+          Enter your city or zipcode to get the weather.
+        </p>
         <form onSubmit={this.handleSubmit}>
           <input
             type = 'text'
@@ -62,7 +67,6 @@ export default class Search extends Component {
               })
             }}
           />
-
           <datalist id='data'>{
             this.state.suggests &&
             this.state.suggests.map((location, index) =>
