@@ -41,7 +41,7 @@ export default class Search extends Component {
   returnURLInput = (string) => {
     let location;
 
-    if (parseInt(string)) {
+    if (parseInt(string, 10)) {
       location = string;
     } else {
       let locationArray = string.split(' ');
@@ -76,12 +76,13 @@ export default class Search extends Component {
           <datalist id='data'>{
             this.state.suggests &&
             this.state.suggests.map((location, index) =>
-          <option value={location} key={index}/>
+              <option value={location} key={index}/>
             )}
           </datalist>
 
           <button>{this.props.isLoaded 
-            ? <img src='./icons/search.svg' /> : 'Get Weather'}</button>
+            ? <img  src='./icons/search.svg'
+                    alt='search icon in input' /> : 'Get Weather'}</button>
         </form>
       </div>
     );

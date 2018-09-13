@@ -35,7 +35,7 @@ class App extends Component {
     const hour = dataPathHourly
       .map( hour => hour.FCTTIME.civil );
     const hourlyTemp = dataPathHourly
-      .map( hour => parseInt(hour.temp.english) );
+      .map( hour => parseInt(hour.temp.english, 10) );
     const hourlyWeatherData = hourlyTemp
       .map((element, index) => {
         return { 

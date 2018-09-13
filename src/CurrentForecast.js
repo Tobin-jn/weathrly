@@ -23,7 +23,7 @@ export default function CurrentForecast(props) {
               {datePath.monthname} {datePath.day}, {datePath.year}
             </p>
             <div className='current-temp-data'>
-              <p className='current-temp'>{parseInt(tempPath)}&deg;</p>
+              <p className='current-temp'>{parseInt(tempPath, 10)}&deg;</p>
               <div className ='current-high-low'>
                 <p className='current-high-temp'>
                 High: {simpleforecastPath.high.fahrenheit}&deg;</p>
