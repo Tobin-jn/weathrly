@@ -13,7 +13,7 @@ const key = config.weatherKey;
 
 class App extends Component {
   constructor () {
-    super()
+    super();
 
     this.state = {
       displayingWelcome: true,
@@ -42,7 +42,7 @@ class App extends Component {
           hour: hour[index], 
           hourCondition: hourCondition[index], 
           temp: element 
-        }
+        };
       }).splice(0, 7);
 
     this.setState({
@@ -68,8 +68,8 @@ class App extends Component {
           dailyCondition: dailyCondition[index], 
           high: dailyHigh[index], 
           low: dailyLow[index]
-        }
-    });
+        };
+      });
 
     this.setState({
       dailyData: dailyWeatherData
@@ -81,8 +81,8 @@ class App extends Component {
   }
   
   fetchWeather = (location) => {
-    let url = `https://api.wunderground.com/api/${key}/
-    conditions/hourly/forecast10day/q/${location}.json`;
+    let url =
+      `https://api.wunderground.com/api/${key}/conditions/hourly/forecast10day/q/${location}.json`;
     
     fetch(url)
       .then(data => data.json())
@@ -123,7 +123,7 @@ class App extends Component {
         hourlyData: storageArr[1],
         dailyData: storageArr[2],
         isLoaded: true
-      })
+      });
     }
   }
 
@@ -161,7 +161,7 @@ class App extends Component {
         fetchWeather={this.fetchWeather}
         isLoaded={this.props.isLoaded}
       />
-    }
+    };
 
     if (this.state.displayingHourlyForecast) {
       display = <HourlyForecast 
@@ -169,7 +169,7 @@ class App extends Component {
         cityData = {this.state.cityData}
         hourlyData = {this.state.hourlyData}
       />
-    } 
+    };
 
     if (this.state.displayingDailyForecast) {
       display = <DailyForecast 
@@ -177,7 +177,7 @@ class App extends Component {
         cityData = {this.state.cityData}
         dailyData = {this.state.dailyData}
       />
-    }
+    };
   
     return (
       <div className="App">

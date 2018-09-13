@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import Header from './Header';
 
@@ -8,15 +7,14 @@ describe('Header', () => {
   let wrapper;
 
   it('should exist', () => {
-    wrapper = shallow(<Header />)
-    expect(wrapper).toBeDefined()
-  })
+    wrapper = shallow(<Header />);
+    expect(wrapper).toBeDefined();
+  });
 
   it('should render the Search component', () => {
 
-    wrapper = shallow(<Header />)
+    wrapper = shallow(<Header />);
 
-    expect(wrapper.find('Search').length).toEqual(1)
-  })
-
-})
+    expect(wrapper.find('Search').length).toEqual(1);
+  });
+});

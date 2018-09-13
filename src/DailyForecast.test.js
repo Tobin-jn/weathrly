@@ -1,12 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import DailyForecast from './DailyForecast';
-import Card from './Card';
 
 describe('DailyForecast', () => {
-  let wrapper
+  let wrapper;
   
   it('should exist', () => {
     const dailyData = [{
@@ -14,11 +12,11 @@ describe('DailyForecast', () => {
       day: 'Monday',
       high: '91',
       low: '62'
-    }]
+    }];
 
-    wrapper = shallow(<DailyForecast dailyData={dailyData}/>)
-    expect(wrapper).toBeDefined()
-  })
+    wrapper = shallow(<DailyForecast dailyData={dailyData}/>);
+    expect(wrapper).toBeDefined();
+  });
 
   it('should render the Card component', () => {
     const dailyData = [{
@@ -26,9 +24,10 @@ describe('DailyForecast', () => {
       day: 'Monday',
       high: '91',
       low: '62'
-    }]
-    wrapper = shallow(<DailyForecast dailyData={dailyData}/>)
+    }];
+
+    wrapper = shallow(<DailyForecast dailyData={dailyData}/>);
 
     expect(wrapper.find('Card').length).toEqual(1)
-  })
-})
+  });
+});
