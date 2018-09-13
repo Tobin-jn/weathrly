@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 
-import Welcome from './Welcome';
-import Header from './Header';
-import Navigation from './Navigation';
-import Footer from './Footer';
 import CurrentForecast from './CurrentForecast';
-import HourlyForecast from './HourlyForecast';
 import DailyForecast from './DailyForecast';
+import Header from './Header';
+import HourlyForecast from './HourlyForecast';
+import Navigation from './Navigation';
+import Welcome from './Welcome';
 import { config } from './config.js';
-import Trie from 'boilerplate';
 import './App.css';
-// import { data, cities } from './api';
 
 const key = config.weatherKey;
 
@@ -34,50 +31,58 @@ class App extends Component {
   updateHourlyData = () => {
     const dataPathHourly = Object.values(this.state.cityData)[3];
     const hourCondition = dataPathHourly
-    .map( hour => hour.condition );
+      .map( hour => hour.condition );
     const hour = dataPathHourly
-    .map( hour => hour.FCTTIME.civil );
+      .map( hour => hour.FCTTIME.civil );
     const hourlyTemp = dataPathHourly
-    .map( hour => parseInt(hour.temp.english) );
+      .map( hour => parseInt(hour.temp.english) );
     const hourlyWeatherData = hourlyTemp
-    .map((element, index) => {
-      return { 
-        hour: hour[index], 
-        hourCondition: hourCondition[index], 
-        temp: element 
-      }
-    }).splice(0, 7);
+      .map((element, index) => {
+        return { 
+          hour: hour[index], 
+          hourCondition: hourCondition[index], 
+          temp: element 
+        }
+      }).splice(0, 7);
 
     this.setState({
       hourlyData: hourlyWeatherData
-    }) 
+    });
   };
   
   updateDailyData = () => {
-    const dataPathDaily = Object.values(this.state.cityData)[2].simpleforecast.forecastday;
-    const weekday = dataPathDaily.map( entry => entry.date.weekday );
-    const dailyCondition = dataPathDaily.map( entry => entry.conditions );
-    const dailyHigh = dataPathDaily.map( entry => entry.high.fahrenheit );
-    const dailyLow = dataPathDaily.map( entry => entry.low.fahrenheit );
-    const dailyWeatherData = weekday.map((day, index) => {
-      return { 
-        day: day, 
-        dailyCondition: dailyCondition[index], 
-        high: dailyHigh[index], 
-        low: dailyLow[index]
-      }
+    const dataPathDaily = Object.values(this.state.cityData)[2]
+      .simpleforecast.forecastday;
+    const weekday = dataPathDaily
+      .map( entry => entry.date.weekday );
+    const dailyCondition = dataPathDaily
+      .map( entry => entry.conditions );
+    const dailyHigh = dataPathDaily
+      .map( entry => entry.high.fahrenheit );
+    const dailyLow = dataPathDaily
+      .map( entry => entry.low.fahrenheit );
+    const dailyWeatherData = weekday
+      .map((day, index) => {
+        return { 
+          day: day, 
+          dailyCondition: dailyCondition[index], 
+          high: dailyHigh[index], 
+          low: dailyLow[index]
+        }
     });
+
     this.setState({
       dailyData: dailyWeatherData
-    })
+    });
   }
   
   componentDidMount() {
-    this.getFromLocalStorage()
+    this.getFromLocalStorage();
   }
   
   fetchWeather = (location) => {
-    let url = `https://api.wunderground.com/api/${key}/conditions/hourly/forecast10day/q/${location}.json`
+    let url = `https://api.wunderground.com/api/${key}/
+    conditions/hourly/forecast10day/q/${location}.json`;
     
     fetch(url)
       .then(data => data.json())
@@ -88,8 +93,7 @@ class App extends Component {
           displayingWelcome: false,
           displayingHourlyForecast: true,
           displayingDailyForecast: false,
-
-        })
+        });
         this.updateHourlyData();
         this.updateDailyData();
         this.setLocalStorage();
@@ -98,17 +102,22 @@ class App extends Component {
     }
 
   setLocalStorage = () => {
-    let storageArr = [this.state.cityData, this.state.hourlyData, this.state.dailyData]
-    localStorage.setItem('cityData', JSON.stringify(storageArr))
+    let storageArr = [
+      this.state.cityData, 
+      this.state.hourlyData, 
+      this.state.dailyData
+    ];
+
+    localStorage.setItem('cityData', JSON.stringify(storageArr));
   }
 
   getFromLocalStorage() {
-    const cityData = localStorage.getItem('cityData')
+    const cityData = localStorage.getItem('cityData');
 
     if (cityData) {
+      let storageArr = JSON.parse(cityData);
 
       this.changeToHourly();
-      let storageArr = JSON.parse(cityData)
       this.setState({ 
         cityData: storageArr[0],
         hourlyData: storageArr[1],
@@ -130,7 +139,7 @@ class App extends Component {
       displayingWelcome: false,
       displayingHourlyForecast: true,
       displayingDailyForecast: false
-    })
+    });
   }
 
   changeToDaily = () => {
@@ -154,7 +163,7 @@ class App extends Component {
       />
     }
 
-    if (this.state.displayingHourlyForecast){
+    if (this.state.displayingHourlyForecast) {
       display = <HourlyForecast 
         displayingHourlyForecast = {this.state.displayingHourlyForecast}
         cityData = {this.state.cityData}
@@ -162,7 +171,7 @@ class App extends Component {
       />
     } 
 
-    if (this.state.displayingDailyForecast){
+    if (this.state.displayingDailyForecast) {
       display = <DailyForecast 
         displayingDailyForecast ={this.state.displayingDailyForecast}
         cityData = {this.state.cityData}
@@ -181,7 +190,8 @@ class App extends Component {
               isLoaded={this.state.isLoaded}
             />
             <CurrentForecast 
-              selectedLocation={`${this.state.selectedCity}, ${this.state.selectedState}`}
+              selectedLocation={`${this.state.selectedCity}, 
+                ${this.state.selectedState}`}
               cityData = {this.state.cityData}
               selectedCity={this.state.selectedCity}
               selectedState={this.state.selectedState}
@@ -199,5 +209,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;
