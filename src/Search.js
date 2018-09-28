@@ -46,6 +46,10 @@ export default class Search extends Component {
     return location;
   }
 
+//   function capitalizeFirstLetter(string) {
+//     return string.charAt(0).toUpperCase() + string.slice(1);
+// }
+
   render() {
     return (
       <div className={this.props.isLoaded 
@@ -60,9 +64,10 @@ export default class Search extends Component {
             placeholder = {this.props.isLoaded 
               ? 'Enter new city or zipcode' : ''}
             onChange = {(event) => {
-              let locationValue = this.returnURLInput(event.target.value);
+              let capitalizedInput = event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1);
+              let locationValue = this.returnURLInput(capitalizedInput);
               
-              this.suggestCity(event.target.value);
+              this.suggestCity(capitalizedInput);
               this.setState({
                 location: locationValue
               });
