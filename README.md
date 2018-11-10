@@ -1,6 +1,6 @@
 # Weathrly
 
-Weathrly is a weather app to display the current forecast in any location in the US. The app uses the Weather Underground API to access up-to-date currebt weather forecasts. It features a current wether view, which includes a tab for the 7 hour forecast as well as the ten day forecast. The city search has autocomplete functionality via a self-created node module of a trie sorting algorithm. This pair project was our first app written in React. 
+Weathrly is a weather app to display the current forecast in any location in the US. The app uses the Weather Underground API to access up-to-date weather forecasts. It features a current weather view, which includes a tab for the 7 hour forecast as well as the ten day forecast. The city search has autocomplete functionality via a self-created node module of a trie sorting algorithm. This pair project was our first app written in React. 
 
 ### API's used
 
