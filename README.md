@@ -19,13 +19,18 @@ A site for....
 
 <img width="1346" alt="screen shot 2018-09-19 at 6 04 53 am" src="https://user-images.githubusercontent.com/32209705/45752317-4c27c080-bbd2-11e8-808f-2fd9b27884a6.png">
 
+#### Search:
+
 <img width="1339" alt="screen shot 2018-09-19 at 6 05 13 am" src="https://user-images.githubusercontent.com/32209705/45752355-65c90800-bbd2-11e8-93d0-8e5ea5214b25.png">
+
+#### City Forecast with 7-hour Forecast:
 
 <img width="1433" alt="screen shot 2018-09-19 at 6 05 40 am" src="https://user-images.githubusercontent.com/32209705/45752356-65c90800-bbd2-11e8-9841-6f5773b99524.png">
 
+#### Ten Day Forecast:
+
 <img width="1421" alt="screen shot 2018-09-19 at 6 05 57 am" src="https://user-images.githubusercontent.com/32209705/45752357-65c90800-bbd2-11e8-8408-997ac69853a0.png">
 
-#### Additional Assets:
 
 ### Setup
 #### Frontend
@@ -35,8 +40,6 @@ Clone the repo
 Run ```npm install``` from the root directory
 
 Run ```npm start``` and visit localhost:3000 in your browser
-
-#### Backend
 
 ### Test Driven Development
 
