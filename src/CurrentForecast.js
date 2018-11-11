@@ -15,7 +15,6 @@ export default function CurrentForecast(props) {
     <div>
       <div className ='current-container'>
         <p className='current-city'>{currentCity} 
-          <span className='to-upper-case'>{props.selectedState}</span>
         </p>
         <div className='current-subcontainer'>
           <div className='current-info'>

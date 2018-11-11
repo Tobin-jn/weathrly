@@ -70,8 +70,6 @@ describe('App', () => {
       cityData: null,  
       hourlyData: [],
       dailyData: [],
-      selectedCity: '',
-      selectedState: '',
       isLoaded: false,
     });
   });
@@ -179,16 +177,6 @@ describe('App', () => {
     expect(wrapper.state('dailyData')).toEqual(
       [1, 2, 3]
     );
-  });
-
-  it('should change selected location in state', () => {
-    wrapper.setState({
-      selectedCity: 'city',
-      selectedState: 'state'
-    });
-    wrapper.instance().changeSelectedLocation('Denver', 'CO');
-    expect(wrapper.state('selectedCity')).toEqual('Denver');
-    expect(wrapper.state('selectedState')).toEqual('CO');
   });
 
   it('should change state to hourly settings', () => {
